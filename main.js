@@ -1,7 +1,6 @@
-import * as THREE from './js/threejs/three.module.js';
+import * as THREE from "https://cdn.skypack.dev/pin/three@v0.128.0-mdxNJqSFIu40tgtjPy6F/mode=imports/optimized/three.js" ;
 
-let camera, scene, renderer;
-let geometry, material, mesh;
+let camera, scene, renderer,geometry, material, mesh;
 
 init();
 
