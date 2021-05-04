@@ -47,16 +47,16 @@ function init() {
 	});
 	window.addEventListener("keyup", function(event){
 		switch (event){
-			case (event.code = KeyW):
+			case (event.code == "KeyW"):
 					console.log("wup")
 				break;
-				case (event.code = KeyD):
+				case (event.code == "KeyD"):
 					console.log("dup")
 				break;
-				case (event.code = KeyA):
+				case (event.code == "KeyA"):
 					console.log("aup")
 					break;
-				case (event.code = KeyS):
+				case (event.code == "KeyS"):
 				console.log("sup")
 
 	
