@@ -1,4 +1,4 @@
-import * as THREE from './js/threejs/three.module.js';
+import * as THREE from '/js/threejs/three.module.js';
 import { PointerLockControls } from '/js/threejs/utils/PointerLockControls.js'
 let camera, scene, renderer, geometry, material, mesh, controls;
 
