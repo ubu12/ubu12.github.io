@@ -1,5 +1,5 @@
-import * as THREE from 'threejs/three.module.js';
-import { PointerLockControls } from 'threejs/utils/PointerLockControls.js'
+import * as THREE from '/threejs/three.module.js';
+import { PointerLockControls } from '/threejs/utils/PointerLockControls.js'
 let fpCamera, scene, renderer, geometry, material, mesh, controls;
 
 init();
