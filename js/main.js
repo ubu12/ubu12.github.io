@@ -21,7 +21,11 @@ function init() {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.setAnimationLoop( animation );
 	document.body.appendChild( renderer.domElement );
+	document.body.addEventListener( 'click', function () {
 
+					controls.lock();
+
+				} );
 	window.addEventListener("keydown", function(event){
 		switch (event){
 			case (event.code = KeyW):
@@ -68,8 +72,6 @@ function animation( time ) {
 	mesh.rotation.x = time / 2000;
 	mesh.rotation.y = time / 1000;
 
-	renderer.render( scene, fpCamera
-		       
-		       );
+	renderer.render( scene, fpCamera);
 
 }
