@@ -28,16 +28,16 @@ function init() {
 				} );
 	window.addEventListener("keydown", function(event){
 		switch (event){
-			case (event.code = KeyW):
+			case (event.code == "KeyW"):
 					console.log("w")
 				break;
-				case (event.code = KeyD):
+				case (event.code == "KeyD"):
 					console.log("d")
 				break;
-				case (event.code = KeyA):
+				case (event.code == "KeyA"):
 					console.log("A")
 					break;
-				case (event.code = KeyS):
+				case (event.code == "KeyS"):
 				console.log("S")
 
 	
