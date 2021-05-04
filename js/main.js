@@ -59,11 +59,12 @@ function init () {
     //animate 3d objects
     animate();
     // find camera angle relative to 0
-    var vector = camera.getWorldDirection();
+ /*
+    var vector = fpCamera.getWorldDirection();
     angle = THREE.Math.radToDeg( Math.atan2(vector.x,vector.z) );  
     this.position.x += velocity * Math.sin(angle);
     this.position.z -= velocity * Math.cos(angle);
-
+*/
     
 
 }
