@@ -1,14 +1,14 @@
-import * as THREE from "https://cdn.skypack.dev/pin/three@v0.128.0-mdxNJqSFIu40tgtjPy6F/mode=imports/optimized/three.js" ;
-
-let camera, scene, renderer,geometry, material, mesh;
+import * as THREE from './js/threejs/three.module.js';
+import { PointerLockControls } from '/js/threejs/utils/PointerLockControls.js'
+let camera, scene, renderer, geometry, material, mesh, controls;
 
 init();
 
 function init() {
 
-	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
+	fpCamera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
 	camera.position.z = 1;
-console.log(1)
+	controls = new PointerLockControls(fpCamera, document.body)
 	scene = new THREE.Scene();
 
 	geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
