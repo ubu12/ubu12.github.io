@@ -16,6 +16,7 @@ var canJump = false;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function init () {
      //give values to our variables and initliase our renderers
+    const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
 
      //create a scene
      scene = new THREE.Scene();
@@ -47,7 +48,10 @@ function init () {
             //define our animation function
 
         const animate = function () {
+            
+ 
              var vector = new THREE.Vector3();
+             const line = new THREE.Line( vector, material );
             fpCamera.getWorldDirection(vector);
             angle = THREE.Math.radToDeg( Math.atan2(vector.x,vector.z) );  
             console.log(angle)
