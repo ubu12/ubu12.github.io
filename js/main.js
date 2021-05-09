@@ -4,17 +4,19 @@ import { PointerLockControls } from 'https://cdn.skypack.dev/three@0.128.0/examp
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 //initialise variables 
 let fpCamera, scene, renderer, loader, model, light, angle;
-let moveForward = false;
-let moveBackward = false;
-let moveLeft = false;
-let moveRight = false;
-let canJump = false;
-let velocity = 1;
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////// scene/rendering code ////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function init () {
      //give values to our variables and initliase our renderers
+     var moveForward = false;
+     var moveBackward = false;
+     var moveLeft = false;
+     var moveRight = false;
+     var canJump = false;
+     var velocity = 1;
      //create a scene
      scene = new THREE.Scene();
      //create a new renderer
@@ -73,7 +75,7 @@ function init () {
     document.addEventListener("keydown", function (KeyboardEvent){
         if (KeyboardEvent.key == "w") {
             moveForward = true;
-             console.log("w pressed")
+             console.log(moveForward)
         }
         else if (KeyboardEvent.key == "a") {
             moveLeft = true;
