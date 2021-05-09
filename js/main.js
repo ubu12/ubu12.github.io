@@ -47,13 +47,14 @@ function init () {
             //define our animation function
 
         const animate = function () {
+             var vector = new THREE.Vector3();
+            fpCamera.getWorldDirection(vector);
+            angle = THREE.Math.radToDeg( Math.atan2(vector.x,vector.z) );  
             requestAnimationFrame( animate );
             renderer.render( scene, fpCamera );
-             console.log(moveForward, "is running here")
            if (moveForward == true) {     
                fpCamera.position.x += velocity * Math.sin(angle);
                fpCamera.position.z -= velocity * Math.cos(angle);
-               console.log("forwardPressed")
 
            }
 
@@ -61,9 +62,6 @@ function init () {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////// movement/interaction code ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    var vector = new THREE.Vector3();
-    fpCamera.getWorldDirection(vector);
-    angle = THREE.Math.radToDeg( Math.atan2(vector.x,vector.z) );  
 
     //hook camera with control module
     const controls = new PointerLockControls( fpCamera, document.body );
