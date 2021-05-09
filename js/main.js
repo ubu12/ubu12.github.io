@@ -66,7 +66,7 @@ function init () {
     
     }, false);
      
-    console.log(moveForward)
+    console.log(moveForward, "is running here")
     if (moveForward == true) {     
         fpCamera.position.x += velocity * Math.sin(angle);
         fpCamera.position.z -= velocity * Math.cos(angle);
