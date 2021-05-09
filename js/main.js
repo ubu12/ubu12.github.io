@@ -10,6 +10,7 @@ var moveLeft = false;
 var moveRight = false;
 var canJump = false;
  var velocity = 10;
+ var vector = new THREE.Vector3();
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////// scene/rendering code ////////////////////////////////////////////////////////////////////////////////////////
@@ -17,6 +18,8 @@ var canJump = false;
 function init () {
      //give values to our variables and initliase our renderers
     const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+    const line = new THREE.Line( vector, material );
+    scene.add( line );
 
      //create a scene
      scene = new THREE.Scene();
@@ -47,12 +50,8 @@ function init () {
         } );
             //define our animation function
 
-        const animate = function () {
-            
- 
-             var vector = new THREE.Vector3();
-             const line = new THREE.Line( vector, material );
-            scene.add( line );
+        const animate = function (vector) {
+   
 
             fpCamera.getWorldDirection(vector);
             angle = THREE.Math.radToDeg( Math.atan2(vector.x,vector.z) );  
