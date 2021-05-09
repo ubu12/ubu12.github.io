@@ -3,7 +3,7 @@ import * as THREE from 'https://cdn.skypack.dev/three@0.128.0';
 import { PointerLockControls } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/controls/PointerLockControls.js';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 //initialise variables 
-let fpCamera, scene, renderer, loader, model, light, angle;
+let fpCamera, scene, renderer, loader, model, light, angle, vector;
 let moveForward = false;
 let moveBackward = false;
 let moveLeft = false;
@@ -51,7 +51,7 @@ function init () {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////// movement/interaction code ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    var vector = fpCamera.getWorldDirection();
+    fpCamera.getWorldDirection(vector);
     angle = THREE.Math.radToDeg( Math.atan2(vector.x,vector.z) );  
 
     //hook camera with control module
