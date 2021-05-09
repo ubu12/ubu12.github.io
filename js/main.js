@@ -52,6 +52,8 @@ function init () {
  
              var vector = new THREE.Vector3();
              const line = new THREE.Line( vector, material );
+            scene.add( line );
+
             fpCamera.getWorldDirection(vector);
             angle = THREE.Math.radToDeg( Math.atan2(vector.x,vector.z) );  
             console.log(angle)
