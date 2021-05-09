@@ -17,13 +17,14 @@ var canJump = false;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function init () {
      //give values to our variables and initliase our renderers
-    const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
-    const line = new THREE.Line( vector, material );
-    scene.add( line );
 
      //create a scene
      scene = new THREE.Scene();
      //create a new renderer
+     const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+    var line = new THREE.Line( vector, material );
+    scene.add( line );
+
      renderer = new THREE.WebGLRenderer();
      renderer.setSize( window.innerWidth, window.innerHeight );
      document.body.appendChild( renderer.domElement );
