@@ -49,6 +49,14 @@ function init () {
         const animate = function () {
             requestAnimationFrame( animate );
             renderer.render( scene, fpCamera );
+             console.log(moveForward, "is running here")
+           if (moveForward == true) {     
+               fpCamera.position.x += velocity * Math.sin(angle);
+               fpCamera.position.z -= velocity * Math.cos(angle);
+               console.log("forwardPressed")
+
+           }
+
         };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////// movement/interaction code ///////////////////////////////////////////////////////////////////////////////////
@@ -66,13 +74,6 @@ function init () {
     
     }, false);
      
-    console.log(moveForward, "is running here")
-    if (moveForward == true) {     
-        fpCamera.position.x += velocity * Math.sin(angle);
-        fpCamera.position.z -= velocity * Math.cos(angle);
-        console.log("forwardPressed")
-
-    }
     // listen for keypresses
     document.addEventListener("keydown", function (KeyboardEvent){
         if (KeyboardEvent.key == "w") {
