@@ -4,19 +4,19 @@ import { PointerLockControls } from 'https://cdn.skypack.dev/three@0.128.0/examp
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 //initialise variables 
 let fpCamera, scene, renderer, loader, model, light, angle;
-
+var moveForward = false;
+var moveBackward = false;
+var moveLeft = false;
+var moveRight = false;
+var canJump = false;
+ var velocity = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////// scene/rendering code ////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function init () {
      //give values to our variables and initliase our renderers
-     var moveForward = false;
-     var moveBackward = false;
-     var moveLeft = false;
-     var moveRight = false;
-     var canJump = false;
-     var velocity = 1;
+
      //create a scene
      scene = new THREE.Scene();
      //create a new renderer
@@ -65,6 +65,8 @@ function init () {
         controls.lock();
     
     }, false);
+     
+    console.log(moveForward)
     if (moveForward == true) {     
         fpCamera.position.x += velocity * Math.sin(angle);
         fpCamera.position.z -= velocity * Math.cos(angle);
