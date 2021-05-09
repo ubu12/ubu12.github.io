@@ -66,7 +66,7 @@ function init () {
     if (moveForward == true) {     
         fpCamera.position.x += velocity * Math.sin(angle);
         fpCamera.position.z -= velocity * Math.cos(angle);
-    
+        console.log("forwardPressed")
 
     }
     // listen for keypresses
