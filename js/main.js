@@ -58,13 +58,13 @@ function init () {
              fpCamera.position.addScaledVector(direction, velocity);
            }
              if (moveRight == true) {     
-             fpCamera.position.addScaledVector(direction.z+90 , velocity);
+             fpCamera.position.addScaledVector(direction.z+0.90 , velocity);
            }
                           if (moveLeft == true) {     
-             fpCamera.position.addScaledVector(direction.z-90, velocity);
+             fpCamera.position.addScaledVector(direction.z-0.90, velocity);
            }
              if (moveBackward == true) {     
-             fpCamera.position.addScaledVector(direction.x-180, velocity);
+             fpCamera.position.addScaledVector(direction.x-1.80, velocity);
            }
 
         };
