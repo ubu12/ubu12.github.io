@@ -9,8 +9,6 @@ var moveBackward = false;
 var moveLeft = false;
 var moveRight = false;
 var canJump = false;
- var velocity = 10;
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////// scene/rendering code ////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,19 +44,18 @@ function init () {
 
         } );
             //define our animation function
-
+        const direction = new THREE.Vector3;
         const animate = function (vector) {
-   
+        var velocity = 10;
+
             var vector = new THREE.Vector3();
-            fpCamera.getWorldDirection(vector);
+            fpCamera.getWorldDirection(direction);
             angle = THREE.Math.radToDeg( Math.atan2(vector.x,vector.z) );  
             console.log(angle)
             requestAnimationFrame( animate );
             renderer.render( scene, fpCamera );
             if (moveForward == true) {     
-               fpCamera.position.x += velocity * Math.sin(angle);
-               fpCamera.position.z -= velocity * Math.cos(angle);
-
+             fpCamera.position.addScaledVector(direction, velocity);
            }
 
         };
