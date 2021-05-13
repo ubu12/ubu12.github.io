@@ -51,20 +51,20 @@ function init () {
             var vector = new THREE.Vector3();
             fpCamera.getWorldDirection(direction);
             angle = THREE.Math.radToDeg( Math.atan2(vector.x,vector.z) );  
-            console.log(angle)
+            console.log(velocity)
             requestAnimationFrame( animate );
             renderer.render( scene, fpCamera );
             if (moveForward == true) {     
              fpCamera.position.addScaledVector(direction, velocity);
            }
              if (moveRight == true) {     
-             fpCamera.position.addScaledVector(direction+90, velocity);
+             fpCamera.position.addScaledVector(direction, velocity);
            }
                           if (moveLeft == true) {     
-             fpCamera.position.addScaledVector(direction+270, velocity);
+             fpCamera.position.addScaledVector(direction, velocity);
            }
              if (moveBackward == true) {     
-             fpCamera.position.addScaledVector(direction+180, velocity);
+             fpCamera.position.addScaledVector(direction, velocity);
            }
 
         };
