@@ -51,7 +51,7 @@ function init () {
             var vector = new THREE.Vector3();
             fpCamera.getWorldDirection(direction);
             angle = THREE.Math.radToDeg( Math.atan2(vector.x,vector.z) );  
-            console.log(velocity)
+            console.log(direction)
             requestAnimationFrame( animate );
             renderer.render( scene, fpCamera );
             if (moveForward == true) {     
