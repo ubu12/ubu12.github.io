@@ -46,7 +46,7 @@ function init () {
             //define our animation function
         const direction = new THREE.Vector3;
         const animate = function (vector) {
-        var velocity = 10;
+        var velocity = 4;
 
             var vector = new THREE.Vector3();
             fpCamera.getWorldDirection(direction);
@@ -56,6 +56,15 @@ function init () {
             renderer.render( scene, fpCamera );
             if (moveForward == true) {     
              fpCamera.position.addScaledVector(direction, velocity);
+           }
+             if (moveRight == true) {     
+             fpCamera.position.addScaledVector(direction+90, velocity);
+           }
+                          if (moveLeft == true) {     
+             fpCamera.position.addScaledVector(direction+270, velocity);
+           }
+             if (moveBackward == true) {     
+             fpCamera.position.addScaledVector(direction+180, velocity);
            }
 
         };
