@@ -10,7 +10,6 @@ var moveLeft = false;
 var moveRight = false;
 var canJump = false;
  var velocity = 10;
- var vector = new THREE.Vector3();
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////// scene/rendering code ////////////////////////////////////////////////////////////////////////////////////////
@@ -21,10 +20,8 @@ function init () {
      //create a scene
      scene = new THREE.Scene();
      //create a new renderer
-     const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
-    var line = new THREE.Line( vector, material );
-    scene.add( line );
-
+     const material = new THREE.LineBaiMaterial( { color: 0x0000ff } );
+   
      renderer = new THREE.WebGLRenderer();
      renderer.setSize( window.innerWidth, window.innerHeight );
      document.body.appendChild( renderer.domElement );
@@ -53,13 +50,13 @@ function init () {
 
         const animate = function (vector) {
    
-
+            var vector = new THREE.Vector3();
             fpCamera.getWorldDirection(vector);
             angle = THREE.Math.radToDeg( Math.atan2(vector.x,vector.z) );  
             console.log(angle)
             requestAnimationFrame( animate );
             renderer.render( scene, fpCamera );
-           if (moveForward == true) {     
+            if (moveForward == true) {     
                fpCamera.position.x += velocity * Math.sin(angle);
                fpCamera.position.z -= velocity * Math.cos(angle);
 
