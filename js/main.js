@@ -20,7 +20,6 @@ function init () {
      //create a scene
      scene = new THREE.Scene();
      //create a new renderer
-     const material = new THREE.LineBaiMaterial( { color: 0x0000ff } );
    
      renderer = new THREE.WebGLRenderer();
      renderer.setSize( window.innerWidth, window.innerHeight );
