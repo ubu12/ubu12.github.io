@@ -46,7 +46,7 @@ function init () {
             //define our animation function
         const direction = new THREE.Vector3;
         const animate = function (vector) {
-        var velocity = 4;
+        var velocity = 1;
 
             var vector = new THREE.Vector3();
             fpCamera.getWorldDirection(direction);
@@ -58,13 +58,13 @@ function init () {
              fpCamera.position.addScaledVector(direction, velocity);
            }
              if (moveRight == true) {     
-             fpCamera.position.addScaledVector(direction, velocity);
+             fpCamera.position.addScaledVector(direction.z+90 , velocity);
            }
                           if (moveLeft == true) {     
-             fpCamera.position.addScaledVector(direction, velocity);
+             fpCamera.position.addScaledVector(direction.z-90, velocity);
            }
              if (moveBackward == true) {     
-             fpCamera.position.addScaledVector(direction, velocity);
+             fpCamera.position.addScaledVector(direction.x-180, velocity);
            }
 
         };
