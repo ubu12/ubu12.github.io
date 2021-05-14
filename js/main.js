@@ -47,7 +47,8 @@ function init () {
         const direction = new THREE.Vector3;
         const animate = function (vector) {
         var velocity = 1;
-
+            var axis = new THREE.Vector3( 0, 1, 0 );
+            var angle = Math.PI / 2;
             var vector = new THREE.Vector3();
             fpCamera.getWorldDirection(direction);
             angle = THREE.Math.radToDeg( Math.atan2(vector.x,vector.z) );  
@@ -58,7 +59,7 @@ function init () {
              fpCamera.position.addScaledVector(direction, velocity);
            }
              if (moveRight == true) {     
-             fpCamera.position.addScaledVector(direction.z+0.90 , velocity);
+             fpCamera.position.addScaledVector(direction.applyAxisAngle(axis, angle) , velocity);
            }
                           if (moveLeft == true) {     
              fpCamera.position.addScaledVector(direction.z-0.90, velocity);
