@@ -60,8 +60,8 @@ function init () {
 
            }
              if (moveRight == true) {     
-             fpCamera.position.addScaledVector(direction.applyAxisAngle(axis, angle) , velocity);
-              console.log((direction.applyAxisAngle(axis, angle) , "moveright"));
+             fpCamera.position.addScaledVector(direction.rotateOnWorldAxis(axis, angle) , velocity);
+              
 
            }
                           if (moveLeft == true) {     
