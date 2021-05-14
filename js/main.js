@@ -61,7 +61,7 @@ function init () {
            }
              if (moveRight == true) {     
              fpCamera.position.addScaledVector(direction.applyAxisAngle(axis, angle) , velocity);
-              console.log(direction)
+              console.log(direction, "moveright")
 
            }
                           if (moveLeft == true) {     
