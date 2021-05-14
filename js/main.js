@@ -68,7 +68,7 @@ function init () {
              fpCamera.position.addScaledVector(direction.z-0.90, velocity);
            }
              if (moveBackward == true) {     
-             fpCamera.position.addScaledVector(fpCamera.position.addScaledVector(-direction, velocity, velocity);
+             fpCamera.position.addScaledVector(fpCamera.position.addScaledVector(-direction, velocity, velocity));
            }
 
         };
