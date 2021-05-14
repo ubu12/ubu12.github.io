@@ -47,7 +47,7 @@ function init () {
         const direction = new THREE.Vector3;
         const animate = function (vector) {
         var velocity = 1;
-            var axis = new THREE.Vector3( 0, 0.90, 0 );
+            var axis = new THREE.Vector3( 1, 0, 0 );
             var angle = Math.PI / 2;
             var vector = new THREE.Vector3();
             fpCamera.getWorldDirection(direction);
@@ -68,7 +68,7 @@ function init () {
              fpCamera.position.addScaledVector(direction.z-0.90, velocity);
            }
              if (moveBackward == true) {     
-             fpCamera.position.addScaledVector(fpCamera.position.addScaledVector(direction, -velocity);
+             fpCamera.position.addScaledVector(direction, -velocity);
            }
 
         };
