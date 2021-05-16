@@ -4,17 +4,29 @@ import { PointerLockControls } from 'https://cdn.skypack.dev/three@0.128.0/examp
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 //initialise variables 
 let fpCamera, scene, renderer, loader, model, light, angle;
+let velocity = 1;
 var moveForward = false;
 var moveBackward = false;
 var moveLeft = false;
 var moveRight = false;
 var canJump = false;
+var enemies = [];
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////// scene/rendering code ////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function init () {
-     //give values to our variables and initliase our renderers
-
+     class Enemy {
+     constructor (type, posX, posY){
+               this.type = type;
+               this.posX = posX;
+               this.posY = posY;
+          }
+     updatePos(){
+          this.posX =+ velocity     
+          this.posY =+ velcoty
+     }
+     } 
+     //give values to our variables and initliase our renderer
      //create a scene
      scene = new THREE.Scene();
      //create a new renderer
@@ -46,7 +58,6 @@ function init () {
             //define our animation function
         const direction = new THREE.Vector3;
         const animate = function (vector) {
-        var velocity = 1;
             var axis = new THREE.Vector3( 0, 1, 0 );
             var angle = Math.PI / 2;
             var vector = new THREE.Vector3();
@@ -60,7 +71,6 @@ function init () {
            }
              if (moveRight == true) {     
                 fpCamera.position.addScaledVector(direction.applyAxisAngle(axis, angle) , -velocity);
-
 
            }
                           if (moveLeft == true) {     
