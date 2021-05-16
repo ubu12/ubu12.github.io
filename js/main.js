@@ -59,12 +59,12 @@ function init () {
 
            }
              if (moveRight == true) {     
-             fpCamera.position.addScaledVector(direction.applyAxisAngle(axis, angle) , velocity);
-              
+                fpCamera.position.addScaledVector(direction.applyAxisAngle(axis, angle) , -velocity);
+
 
            }
                           if (moveLeft == true) {     
-             fpCamera.position.addScaledVector(direction.z-0.90, velocity);
+             fpCamera.position.addScaledVector(direction.applyAxisAngle(axis, angle) , velocity);
            }
              if (moveBackward == true) {     
              fpCamera.position.addScaledVector(direction, -velocity);
