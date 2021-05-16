@@ -60,7 +60,7 @@ function init () {
 
            }
              if (moveRight == true) {     
-             fpCamera.position.addScaledVector(direction..applyAxisAngle(axis, angle) , velocity);
+             fpCamera.position.addScaledVector(direction.applyAxisAngle(axis, angle) , velocity);
               
 
            }
