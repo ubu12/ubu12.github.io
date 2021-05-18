@@ -69,24 +69,26 @@ function init () {
             fpCamera.getWorldDirection(direction);
             requestAnimationFrame( animate );
             renderer.render( scene, fpCamera );
-            if (moveForward == true) {     
-             velocity = velocity * 1.1
-             fpCamera.position.addScaledVector(direction, velocity);
+            fpCamera.position.addScaledVector(direction, velocity);
+  
+          if (moveForward == true) {     
+             velocity = velocity * 1.02
              console.log(direction)
 
            }
              if (moveRight == true) {     
-               velocity = velocity * 1.1
-                fpCamera.position.addScaledVector(direction.applyAxisAngle(axis, angle) , -velocity);
+               velocity = velocity * -1.02
+                 direction = direction.applyAxisAngle(axis, angle)
+           
 
            }
-                          if (moveLeft == true) {  
-             velocity = velocity * 1.1
-             fpCamera.position.addScaledVector(direction.applyAxisAngle(axis, angle) , velocity);
+                          if (moveLeft == true){  
+             velocity = velocity * 1.02
+           direction = direction.applyAxisAngle(axis, angle)
+
            }
              if (moveBackward == true) {   
-               velocity = velocity * 1.1
-             fpCamera.position.addScaledVector(direction, -velocity);
+               velocity = velocity * -1.02
            }
 
 
