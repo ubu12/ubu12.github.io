@@ -59,9 +59,9 @@ function init () {
 
         } );
             //define our animation function
-        const direction = new THREE.Vector3;
-  const animate = function (vector) {
+          const animate = function (vector) {
        /// air resistance
+            var direction = new THREE.Vector3;
             velocity = (velocity / 1.01);
             var axis = new THREE.Vector3( 0, 1, 0 );
             var angle = Math.PI / 2;
