@@ -4,7 +4,7 @@ import { PointerLockControls } from 'https://cdn.skypack.dev/three@0.128.0/examp
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 //initialise variables 
 let fpCamera, scene, renderer, loader, model, light, angle;
-let velocity = 1;
+let velocity = 3;
 var moveForward = false;
 var moveBackward = false;
 var moveLeft = false;
