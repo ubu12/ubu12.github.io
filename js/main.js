@@ -60,6 +60,7 @@ function init () {
        /// air resistance
             var direction = new THREE.Vector3;
             velocity = (velocity / 1.01);
+            console.log(velocity)
             //var axis = new THREE.Vector3( 0, 1, 0 );
             //var angle = Math.PI / 2;
             var vector = new THREE.Vector3();
