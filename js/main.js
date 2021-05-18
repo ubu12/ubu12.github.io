@@ -4,7 +4,7 @@ import { PointerLockControls } from 'https://cdn.skypack.dev/three@0.128.0/examp
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 //initialise variables 
 let fpCamera, scene, renderer, loader, model, light, angle;
-let velocity = 2;
+let velocity = 0;
 let gravity = 2.0;
 var momentum; 
 var moveForward = false;
@@ -71,25 +71,26 @@ function init () {
             renderer.render( scene, fpCamera );
             fpCamera.position.addScaledVector(direction, velocity);
   
-          if (moveForward == true) {     
+          if (moveForward == true) {
+             velocity = 0.2
              velocity = velocity * 1.02
              console.log(direction)
 
            }
              if (moveRight == true) {     
+               velocity = 0.2
                velocity = velocity * -1.02
                  direction = direction.applyAxisAngle(axis, angle)
            
 
            }
-                          if (moveLeft == true){  
+           if (moveLeft == true){  
+             velocity = 0.2                
              velocity = velocity * 1.02
            direction = direction.applyAxisAngle(axis, angle)
 
            }
-             if (moveBackward == true) {   
-               velocity = velocity * -1.02
-           }
+          
 
 
         };
@@ -115,9 +116,7 @@ function init () {
         else if (KeyboardEvent.key == "a") {
             moveLeft = true;
         }
-        else if (KeyboardEvent.key == "s") {
-            moveBackward = true;
-        }
+    
         else if (KeyboardEvent.key == "d") {
             moveRight = true;
         }
@@ -130,9 +129,7 @@ function init () {
         else if (KeyboardEvent.key == "a") {
             moveLeft = false;
         }
-        else if (KeyboardEvent.key == "s") {    
-            moveBackward = false;
-        }
+
         else if (KeyboardEvent.key == "d") {
             moveRight = false;
         }
