@@ -4,9 +4,7 @@ import { PointerLockControls } from 'https://cdn.skypack.dev/three@0.128.0/examp
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 //initialise variables 
 let fpCamera, scene, renderer, loader, model, light, angle;
-let velocity = 1;
 let gravity = 2.0;
-var momentum; 
 var moveForward = false;
 var canJump = false;
 var enemies = [];
@@ -14,18 +12,38 @@ var enemies = [];
 ///////////////////////////////////////////////////////////////////// scene/rendering code ////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function init () {
-     class Enemy {
-     constructor (type, posX, posY){
-               this.type = type;
-               this.posX = posX;
-               this.posY = posY;
+          class Player {
+               constructor (newPos){
+                    this.direction = new THREE.Vector3;
+                    this.velocity = (this.velocity / 1.01) ;
+                    this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
+                    this.camera.position = this.newPos;
+                      
+               }
+               updatePos(){
+                      this.camera.getWorldDirection(this.direction);
+                      this.camera.position.addScaledVector(this.direction, this.velocity);
+                      if (moveForward == true) {
+                            this.velocity = this.velocity + 0.05
+                            console.log(direction)
+
+                   }
+
+               }
+               }
+          class Enemy {
+          constructor (type, posX, posY, posZ){
+                    this.type = type;
+                    this.posX = posX;
+                    this.posY = posY;
+                    this.posZ = posZ;
+               }
+          updatePos(){
+               this.posX =+ velocity     
+               this.posY =+ velcoty
           }
-     updatePos(){
-          this.posX =+ velocity     
-          this.posY =+ velcoty
-     }
-     } 
-     
+            }  
+      fpCamera = new Player(new THREE.Vector3(0 ,0 , 0));
      //give values to our variables and initliase our renderer
      //create a scene
      scene = new THREE.Scene();
@@ -35,7 +53,6 @@ function init () {
      renderer.setSize( window.innerWidth, window.innerHeight );
      document.body.appendChild( renderer.domElement );
      //create the first person camera
-     fpCamera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
      //initialise and add a new light source to the scene
      light = new THREE.AmbientLight( 0x404040 ); // soft white light
      scene.add( light);
@@ -56,23 +73,16 @@ function init () {
 
         } );
             //define our animation function
-          const animate = function (vector) {
-       /// air resistance
-            var direction = new THREE.Vector3;
-            velocity = (velocity / 1.01);
+          const animate = function () {
+            requestAnimationFrame( animate );
+            fpCamera.updatePos()
             console.log(velocity)
             //var axis = new THREE.Vector3( 0, 1, 0 );
             //var angle = Math.PI / 2;
-            var vector = new THREE.Vector3();
-            fpCamera.getWorldDirection(direction);
-            requestAnimationFrame( animate );
-            renderer.render( scene, fpCamera );
-            fpCamera.position.addScaledVector(direction, velocity);
-          if (moveForward == true) {
-             velocity = velocity + 0.05
-             console.log(direction)
+           renderer.render( scene, fpCamera.camera );
 
-           }
+            fpCamera.position.z += gravity    
+        
     
  
           
