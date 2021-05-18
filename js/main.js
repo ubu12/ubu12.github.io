@@ -8,9 +8,6 @@ let velocity = 0;
 let gravity = 2.0;
 var momentum; 
 var moveForward = false;
-var moveBackward = false;
-var moveLeft = false;
-var moveRight = false;
 var canJump = false;
 var enemies = [];
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,33 +60,21 @@ function init () {
        /// air resistance
             var direction = new THREE.Vector3;
             velocity = (velocity / 1.01);
-            var axis = new THREE.Vector3( 0, 1, 0 );
-            var angle = Math.PI / 2;
+            //var axis = new THREE.Vector3( 0, 1, 0 );
+            //var angle = Math.PI / 2;
             var vector = new THREE.Vector3();
             fpCamera.getWorldDirection(direction);
             requestAnimationFrame( animate );
             renderer.render( scene, fpCamera );
             fpCamera.position.addScaledVector(direction, velocity);
-  
           if (moveForward == true) {
              velocity = 0.2
-             velocity = velocity * 1.02
+             velocity = velocity * 1.05
              console.log(direction)
 
            }
-             if (moveRight == true) {     
-               velocity = 0.2
-               velocity = velocity * -1.02
-                 direction = direction.applyAxisAngle(axis, angle)
-           
-
-           }
-           if (moveLeft == true){  
-             velocity = 0.2                
-             velocity = velocity * 1.02
-           direction = direction.applyAxisAngle(axis, angle)
-
-           }
+    
+ 
           
 
 
