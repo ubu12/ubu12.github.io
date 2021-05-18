@@ -91,7 +91,7 @@ function init () {
 
              }
           if (sprint == false && stamina =< 10) {
-          stamina =+ 1
+          stamina += 1
           }
 
         };
