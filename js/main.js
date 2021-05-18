@@ -86,7 +86,6 @@ function init () {
              {
                velocity = 2 
                stamina -= 1
-               console.log(velocity)
                console.log(stamina)
 
              }
@@ -145,7 +144,6 @@ function init () {
             sprint = false;
             velocity = 1;
              
-              console.log(velocity)
         }
          
     })
