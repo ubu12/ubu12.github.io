@@ -69,7 +69,7 @@ function init () {
             renderer.render( scene, fpCamera );
             fpCamera.position.addScaledVector(direction, velocity);
           if (moveForward == true) {
-             velocity = velocity + 1.05
+             velocity = velocity + 0.05
              console.log(direction)
 
            }
