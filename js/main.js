@@ -10,6 +10,7 @@ var moveBackward = false;
 var moveLeft = false;
 var moveRight = false;
 var canJump = false;
+var sprint = false;
 var enemies = [];
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////// scene/rendering code ////////////////////////////////////////////////////////////////////////////////////////
@@ -26,6 +27,7 @@ function init () {
           this.posY =+ velcoty
      }
      } 
+     
      //give values to our variables and initliase our renderer
      //create a scene
      scene = new THREE.Scene();
@@ -57,7 +59,7 @@ function init () {
         } );
             //define our animation function
         const direction = new THREE.Vector3;
-        const animate = function (vector) {
+  const animate = function (vector) {
             var axis = new THREE.Vector3( 0, 1, 0 );
             var angle = Math.PI / 2;
             var vector = new THREE.Vector3();
@@ -79,6 +81,14 @@ function init () {
              if (moveBackward == true) {     
              fpCamera.position.addScaledVector(direction, -velocity);
            }
+             if (sprint == true && stamina >= 5)
+             {
+               velocity = 2 
+               stamina -= 1
+               console.log(velocity)
+               console.log(stamina)
+
+             }
 
         };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,6 +119,10 @@ function init () {
         else if (KeyboardEvent.key == "d") {
             moveRight = true;
         }
+          else if (KeyboardEvent.key == "Shift") {
+            sprint = true;
+        }
+         
     })
     document.addEventListener("keyup", function (KeyboardEvent){
         if (KeyboardEvent.key == "w") {
@@ -123,6 +137,12 @@ function init () {
         else if (KeyboardEvent.key == "d") {
             moveRight = false;
         }
+         else if (KeyboardEvent.key == "Shift") {
+            shift = false;
+            velocity = 1;
+              console.log(velocity)
+        }
+         
     })
     //animate 3d objects
     animate();
