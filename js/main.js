@@ -10,6 +10,7 @@ var moveBackward = false;
 var moveLeft = false;
 var moveRight = false;
 var canJump = false;
+var stamina = 9;
 var sprint = false;
 var enemies = [];
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,6 +90,9 @@ function init () {
                console.log(stamina)
 
              }
+          if (sprint == false && stamina =< 10) {
+          stamina =+ 1
+          }
 
         };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -140,6 +144,7 @@ function init () {
          else if (KeyboardEvent.key == "Shift") {
             shift = false;
             velocity = 1;
+             
               console.log(velocity)
         }
          
