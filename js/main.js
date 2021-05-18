@@ -10,8 +10,6 @@ var moveBackward = false;
 var moveLeft = false;
 var moveRight = false;
 var canJump = false;
-var stamina = 9;
-var sprint = false;
 var enemies = [];
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////// scene/rendering code ////////////////////////////////////////////////////////////////////////////////////////
@@ -82,16 +80,7 @@ function init () {
              if (moveBackward == true) {     
              fpCamera.position.addScaledVector(direction, -velocity);
            }
-             if (sprint == true && stamina >= 5)
-             {
-               velocity = 2 
-               stamina -= 1
-               console.log(stamina)
 
-             }
-          if (sprint == false && stamina <= 10) {
-          stamina += 1
-          }
 
         };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -122,10 +111,7 @@ function init () {
         else if (KeyboardEvent.key == "d") {
             moveRight = true;
         }
-          else if (KeyboardEvent.key == "Shift") {
-            sprint = true;
-        }
-         
+
     })
     document.addEventListener("keyup", function (KeyboardEvent){
         if (KeyboardEvent.key == "w") {
@@ -140,11 +126,7 @@ function init () {
         else if (KeyboardEvent.key == "d") {
             moveRight = false;
         }
-         else if (KeyboardEvent.key == "Shift") {
-            sprint = false;
-            velocity = 1;
-             
-        }
+
          
     })
     //animate 3d objects
