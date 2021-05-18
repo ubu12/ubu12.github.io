@@ -90,7 +90,7 @@ function init () {
                console.log(stamina)
 
              }
-          if (sprint == false && stamina =< 10) {
+          if (sprint == false && stamina <= 10) {
           stamina += 1
           }
 
