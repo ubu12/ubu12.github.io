@@ -4,7 +4,9 @@ import { PointerLockControls } from 'https://cdn.skypack.dev/three@0.128.0/examp
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 //initialise variables 
 let fpCamera, scene, renderer, loader, model, light, angle;
-let velocity = 3;
+let velocity = 2;
+let gravity = 2.0;
+var momentum; 
 var moveForward = false;
 var moveBackward = false;
 var moveLeft = false;
@@ -59,6 +61,8 @@ function init () {
             //define our animation function
         const direction = new THREE.Vector3;
   const animate = function (vector) {
+       /// air resistance
+            velocity = (velocity / 1.01);
             var axis = new THREE.Vector3( 0, 1, 0 );
             var angle = Math.PI / 2;
             var vector = new THREE.Vector3();
@@ -66,18 +70,22 @@ function init () {
             requestAnimationFrame( animate );
             renderer.render( scene, fpCamera );
             if (moveForward == true) {     
+             velocity = velocity * 1.1
              fpCamera.position.addScaledVector(direction, velocity);
              console.log(direction)
 
            }
              if (moveRight == true) {     
+               velocity = velocity * 1.1
                 fpCamera.position.addScaledVector(direction.applyAxisAngle(axis, angle) , -velocity);
 
            }
-                          if (moveLeft == true) {     
+                          if (moveLeft == true) {  
+             velocity = velocity * 1.1
              fpCamera.position.addScaledVector(direction.applyAxisAngle(axis, angle) , velocity);
            }
-             if (moveBackward == true) {     
+             if (moveBackward == true) {   
+               velocity = velocity * 1.1
              fpCamera.position.addScaledVector(direction, -velocity);
            }
 
