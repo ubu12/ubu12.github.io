@@ -142,7 +142,7 @@ function init () {
             moveRight = false;
         }
          else if (KeyboardEvent.key == "Shift") {
-            shift = false;
+            sprint = false;
             velocity = 1;
              
               console.log(velocity)
