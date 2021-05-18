@@ -4,7 +4,7 @@ import { PointerLockControls } from 'https://cdn.skypack.dev/three@0.128.0/examp
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 //initialise variables 
 let fpCamera, scene, renderer, loader, model, light, angle;
-let velocity = 0;
+let velocity = 1;
 let gravity = 2.0;
 var momentum; 
 var moveForward = false;
@@ -69,8 +69,7 @@ function init () {
             renderer.render( scene, fpCamera );
             fpCamera.position.addScaledVector(direction, velocity);
           if (moveForward == true) {
-             velocity = 0.2
-             velocity = velocity * 1.05
+             velocity = velocity + 1.05
              console.log(direction)
 
            }
