@@ -17,7 +17,7 @@ function init () {
                     this.direction = new THREE.Vector3;
                     this.velocity = (this.velocity / 1.01) ;
                     this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
-                    this.camera.position = this.newPos;
+                   // this.camera.position = this.newPos;
                       
                }
                updatePos(){
