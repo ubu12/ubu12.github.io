@@ -81,7 +81,7 @@ function init () {
             //var angle = Math.PI / 2;
            renderer.render( scene, fpCamera.camera );
 
-            fpCamera.position.z += gravity    
+            //fpCamera.position.z += gravity    
         
     
  
