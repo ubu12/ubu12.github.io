@@ -29,8 +29,10 @@ function init () {
      //give values to our variables and initliase our renderer
      //create a scene
      scene = new THREE.Scene();
-     //create a new renderer
-   
+     //create a new renderer/axis helper so i can see what downards is lol
+     const axesHelper = new THREE.AxesHelper( 5 );
+     scene.add( axesHelper );
+
      renderer = new THREE.WebGLRenderer();
      renderer.setSize( window.innerWidth, window.innerHeight );
      document.body.appendChild( renderer.domElement );
@@ -61,14 +63,14 @@ function init () {
             var direction = new THREE.Vector3;
             velocity = (velocity / 1.01);
             console.log(velocity)
-            var axis = new THREE.Vector3( 0, 0, 1 );
-            var angle = Math.PI / 2;
+            //var axis = new THREE.Vector3( 0, 0, 1 );
+            //var angle = Math.PI / 2;
             var vector = new THREE.Vector3();
             fpCamera.getWorldDirection(direction);
             requestAnimationFrame( animate );
             renderer.render( scene, fpCamera );
             fpCamera.position.addScaledVector(direction, velocity);
-            fpCamera.position.addScaledVector(vector.applyAxisAngle( axis, angle ), gravity);
+            fpCamera.position()
           if (moveForward == true) {
              velocity = velocity + 0.05
              console.log(direction)
