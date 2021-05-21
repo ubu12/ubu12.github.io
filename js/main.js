@@ -5,7 +5,7 @@ import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/l
 //initialise variables 
 let fpCamera, scene, renderer, loader, model, light, angle;
 let velocity = 1;
-let gravity = 2.0;
+let gravity = 0.098;
 var momentum; 
 var moveForward = false;
 var canJump = false;
