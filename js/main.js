@@ -9,21 +9,21 @@ var moveForward = false;
 var canJump = false;
 var enemies = [];
 var velocity;
+var fpCamera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////// scene/rendering code ////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function init () {
           class Player {
-               constructor (newPos){
+               constructor (camera){
                     this.direction = new THREE.Vector3;
                     this.velocity = (this.velocity / 1.01) ;
-                    this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
-                   // this.camera.position = this.newPos;
                       
                }
                updatePos(){
-                      this.camera.getWorldDirection(this.direction);
-                      this.camera.position.addScaledVector(this.direction, this.velocity);
+                      camera.getWorldDirection(this.direction);
+                      camera.position.addScaledVector(this.direction, this.velocity);
                       if (moveForward == true) {
                             this.velocity = this.velocity + 0.05
                             console.log(direction)
@@ -44,7 +44,7 @@ function init () {
                this.posY =+ velcoty
           }
             }  
-      fpCamera = new Player(new THREE.Vector3(0 ,0 , 0));
+      fpCamera = new Player(fpCamera);
      //give values to our variables and initliase our renderer
      //create a scene
      scene = new THREE.Scene();
