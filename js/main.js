@@ -24,8 +24,8 @@ function init () {
                       
                }
                updatePos(){
-                      camera.getWorldDirection(this.direction);
-                      camera.position.addScaledVector(this.direction, this.velocity);
+                      this.camera.getWorldDirection(this.direction);
+                      this.camera.position.addScaledVector(this.direction, this.velocity);
                       if (moveForward == true) {
                             this.velocity = this.velocity + 0.05
                             console.log(direction)
