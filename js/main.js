@@ -3,7 +3,7 @@ import * as THREE from 'https://cdn.skypack.dev/three@0.128.0';
 import { PointerLockControls } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/controls/PointerLockControls.js';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 //initialise variables 
-let fpCamera, scene, renderer, loader, model, light, angle;
+let scene, renderer, loader, model, light, angle;
 let gravity = 2.0;
 var moveForward = false;
 var canJump = false;
