@@ -18,7 +18,9 @@ function init () {
           class Player {
                constructor (camera){
                     this.direction = new THREE.Vector3;
+                    this.camera = camera;
                     this.velocity = (this.velocity / 1.01) ;
+                    
                       
                }
                updatePos(){
