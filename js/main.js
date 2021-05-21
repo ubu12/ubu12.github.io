@@ -61,13 +61,14 @@ function init () {
             var direction = new THREE.Vector3;
             velocity = (velocity / 1.01);
             console.log(velocity)
-            //var axis = new THREE.Vector3( 0, 1, 0 );
-            //var angle = Math.PI / 2;
+            var axis = new THREE.Vector3( 0, 0, 1 );
+            var angle = Math.PI / 2;
             var vector = new THREE.Vector3();
             fpCamera.getWorldDirection(direction);
             requestAnimationFrame( animate );
             renderer.render( scene, fpCamera );
             fpCamera.position.addScaledVector(direction, velocity);
+            fpCamera.position.addScaledVector(vector.applyAxisAngle( axis, angle ), gravity);
           if (moveForward == true) {
              velocity = velocity + 0.05
              console.log(direction)
