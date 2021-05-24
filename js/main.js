@@ -1,137 +1,105 @@
 //import 3d library and movement and control modules
 import * as THREE from 'https://cdn.skypack.dev/three@0.128.0';
-import { PointerLockControls } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/controls/PointerLockControls.js';
-import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
+import {
+	PointerLockControls
+} from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/controls/PointerLockControls.js';
+import {
+	GLTFLoader
+} from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 //initialise variables 
-let fpCamera, scene, renderer, loader, model, light, angle;
+let scene, renderer, loader, model, light, player;
 let velocity = 1;
 let gravity = 0.098;
-var momentum; 
 var moveForward = false;
-var canJump = false;
 var enemies = [];
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////// scene/rendering code ////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function init () {
-     class Enemy {
-     constructor (type, posX, posY){
-               this.type = type;
-               this.posX = posX;
-               this.posY = posY;
-          }
-     updatePos(){
-          this.posX =+ velocity     
-          this.posY =+ velcoty
-     }
-     } 
-     
-     //give values to our variables and initliase our renderer
-     //create a scene
-     scene = new THREE.Scene();
-     //create a new renderer/axis helper so i can see what downards is lol
-     const axesHelper = new THREE.AxesHelper( 5 );
-     scene.add( axesHelper );
+function init() {
 
-     renderer = new THREE.WebGLRenderer();
-     renderer.setSize( window.innerWidth, window.innerHeight );
-     document.body.appendChild( renderer.domElement );
-     //create the first person camera
-     fpCamera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
-     //initialise and add a new light source to the scene
-     light = new THREE.AmbientLight( 0x404040 ); // soft white light
-     scene.add( light);
-     //initialise our model loader
-    loader = new GLTFLoader();
+	class Player {
+		constructor(direction, vector, camera) {
+			this.direction = new THREE.Vector3();
+			this.vector = new THREE.Vector3();
+			this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
+			this.controls = new PointerLockControls(this.camera, document.body);
+            this.gravityVector = this.camera.position.z -= gravity;
+
+		}
+		update() {
+			document.addEventListener('click', function() {
+				// warning : in current chrome build ther pointer lock api retrurns errors on call. https://bugs.chromium.org/p/chromium/issues/detail?id=1127920
+				player.controls.lock();
+			}, false);
+			velocity = (velocity / 1.01);
+			this.camera.getWorldDirection(this.direction);
+			this.camera.position.addScaledVector(this.direction, velocity);
+			if (moveForward == true) {
+				velocity = velocity + 0.05
+				console.log(this.direction)
+			}
+
+			renderer.render(scene, this.camera);
+		}
+	}
+	class Enemy {
+		constructor(type, posX, posY) {
+			this.type = type;
+			this.posX = posX;
+			this.posY = posY;
+		}
+		updatePos() {
+			this.posX = +velocity
+			this.posY = +velcoty
+		}
+	}
+
+	player = new Player();
+	scene = new THREE.Scene();
+	renderer = new THREE.WebGLRenderer();
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	document.body.appendChild(renderer.domElement);
+	// Light and models
+	light = new THREE.AmbientLight(0x404040); // soft white light
+	scene.add(light);
+	loader = new GLTFLoader(); //initialise our model loader
         // "Ship in Clouds" (https://skfb.ly/67IY9) by Bastien Genbrugge is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
-        //loud the level within gtlf and then add it to the main scene
-    loader.load( 'assets/ship_in_clouds/scene.gltf', function ( gltf ) {
-        //assign a variable to store the currently rendered level
-        model = gltf.scene
-        //resize the scene to fit the canvas
-        model.scale.set(0.5,0.5,0.5);
-        scene.add( model );
-        //error logging
-    }, undefined, function ( error ) {
-
-         console.error( error );
-
-        } );
-            //define our animation function
-          const animate = function (vector) {
-       /// air resistance
-            var direction = new THREE.Vector3;
-            velocity = (velocity / 1.01);
-            console.log(velocity)
-            //var axis = new THREE.Vector3( 0, 0, 1 );
-            //var angle = Math.PI / 2;
-            var vector = new THREE.Vector3();
-            fpCamera.getWorldDirection(direction);
-            requestAnimationFrame( animate );
-            renderer.render( scene, fpCamera );
-            fpCamera.position.addScaledVector(direction, velocity);
-            //fpCamera.position()
-          if (moveForward == true) {
-             velocity = velocity + 0.05
-             console.log(direction)
-
-           }
-    
- 
-          
-
-
-        };
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////// movement/interaction code ///////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    //hook camera with control module
-    const controls = new PointerLockControls( fpCamera, document.body );
-    // add event listener to show/hide a UI (e.g. the game's menu)
-    document.addEventListener( 'click', function () {
-    // warning : in currect chrome build ther pointer lock api retrurns errors on call. https://bugs.chromium.org/p/chromium/issues/detail?id=1127920
-        controls.lock();
-    
-    }, false);
-     
-    // listen for keypresses
-    document.addEventListener("keydown", function (KeyboardEvent){
-        if (KeyboardEvent.key == "w") {
-            moveForward = true;
-             console.log(moveForward)
-        }
-        else if (KeyboardEvent.key == "a") {
-            moveLeft = true;
-        }
-    
-        else if (KeyboardEvent.key == "d") {
-            moveRight = true;
-        }
-
-    })
-    document.addEventListener("keyup", function (KeyboardEvent){
-        if (KeyboardEvent.key == "w") {
-            moveForward = false;
-        }
-        else if (KeyboardEvent.key == "a") {
-            moveLeft = false;
-        }
-
-        else if (KeyboardEvent.key == "d") {
-            moveRight = false;
-        }
-
-         
-    })
-    //animate 3d objects
-    animate();
-    // find camera angle relative to 0
- 
-    
-
-    
-
+	loader.load('assets/ship_in_clouds/scene.gltf', function(gltf) { //load the level within gtlf and then add it to the main scene
+		model = gltf.scene // assign a variable to store the currently rendered level
+		model.scale.set(0.5, 0.5, 0.5); // resize the scene to fit the canvas
+		scene.add(model);
+	}, undefined, function(error) {	// error logging
+		console.error(error);
+	});
+    //animation
+	const animate = function(vector) {
+		requestAnimationFrame(animate);
+		player.update()
+	};
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////// movement/interaction code ///////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//hook camera with control module
+	// add event listener to show/hide a UI (e.g. the game's menu)
+	// listen for keypresses
+	document.addEventListener("keydown", function(KeyboardEvent) {
+		if (KeyboardEvent.key == "w") {
+			moveForward = true;
+			console.log(moveForward)
+		} else if (KeyboardEvent.key == "a") {
+			moveLeft = true;
+		} else if (KeyboardEvent.key == "d") {
+			moveRight = true;
+		}
+	})
+	document.addEventListener("keyup", function(KeyboardEvent) {
+		if (KeyboardEvent.key == "w") {
+			moveForward = false;
+		} else if (KeyboardEvent.key == "a") {
+			moveLeft = false;
+		} else if (KeyboardEvent.key == "d") {
+			moveRight = false;
+		}
+	})
+	//animate 3d objects
+	animate();
 }
 //start main loop function
 init();
