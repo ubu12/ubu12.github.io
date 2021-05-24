@@ -70,7 +70,7 @@ function init () {
             requestAnimationFrame( animate );
             renderer.render( scene, fpCamera );
             fpCamera.position.addScaledVector(direction, velocity);
-            fpCamera.position()
+            //fpCamera.position()
           if (moveForward == true) {
              velocity = velocity + 0.05
              console.log(direction)
