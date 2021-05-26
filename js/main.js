@@ -9,36 +9,54 @@ import {
 //initialise variables 
 let scene, renderer, loader, model, light, player;
 let velocity = 1;
-let gravity = 0.098;
+let gravity = 0.382;
+let gravityVelocity = 0.098
 var moveForward = false;
 var enemies = [];
 function init() {
 
+	
 	class Player {
-		constructor(direction, vector, camera) {
+		constructor(direction, vector, camera, controls) {
 			this.direction = new THREE.Vector3();
 			this.vector = new THREE.Vector3();
 			this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
 			this.controls = new PointerLockControls(this.camera, document.body);
-            this.gravityVector = this.camera.position.z -= gravity;
-
 		}
 		update() {
 			document.addEventListener('click', function() {
 				// warning : in current chrome build ther pointer lock api retrurns errors on call. https://bugs.chromium.org/p/chromium/issues/detail?id=1127920
 				player.controls.lock();
 			}, false);
+
+			player.controls.addEventListener('lock', function () {
+
+			//	instructions.style.display = 'none';
+			//	blocker.style.display = 'none';
+
+			});
+
+			player.controls.addEventListener('unlock', function () {
+
+			//	blocker.style.display = 'block';
+			//	instructions.style.display = '';
+			});
+
 			velocity = (velocity / 1.01);
 			this.camera.getWorldDirection(this.direction);
 			this.camera.position.addScaledVector(this.direction, velocity);
+			//this.camera.position = this.gravityVector;
+			this.camera.position.setY((this.camera.position.y - gravity));
+			console.log(this.camera.position.z - gravity)
 			if (moveForward == true) {
-				velocity = velocity + 0.05
-				console.log(this.direction)
+				velocity = velocity + 0.025
 			}
-
+			if (this.gravityVelocity > 0.98) {
+			}
 			renderer.render(scene, this.camera);
 		}
 	}
+
 	class Enemy {
 		constructor(type, posX, posY) {
 			this.type = type;
@@ -50,7 +68,7 @@ function init() {
 			this.posY = +velcoty
 		}
 	}
-
+	gui = new gui();
 	player = new Player();
 	scene = new THREE.Scene();
 	renderer = new THREE.WebGLRenderer();
