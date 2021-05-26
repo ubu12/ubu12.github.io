@@ -68,7 +68,7 @@ function init() {
 			this.posY = +velcoty
 		}
 	}
-	gui = new gui();
+	//gui = new gui();
 	player = new Player();
 	scene = new THREE.Scene();
 	renderer = new THREE.WebGLRenderer();
