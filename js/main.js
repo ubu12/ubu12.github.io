@@ -80,6 +80,7 @@ function init() {
 		setup(){
 			switch (this.type){
 				case 1:
+					console.log("Goal created.")
 					this.object = new THREE.IcosahedronGeometry()
 					this.mesh = new THREE.Mesh(this.object, this.material);
 					this.mesh.position.set(0, 0, 0);
