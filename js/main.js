@@ -7,7 +7,7 @@ import {
 	GLTFLoader
 } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 //initialise variables 
-let scene, renderer, loader, model, light, player;
+let scene, renderer, loader, model, light, player, target;
 let velocity = 1;
 let gravity = 0.382;
 let gravityVelocity = 0.098
@@ -68,9 +68,34 @@ function init() {
 			this.posY = +velcoty
 		}
 	}
+	class goal {
+		constructor(position, type, object, material) {
+			this.position = position;
+			this.type = type;
+			this.object;
+			this.mesh;
+			this.material = new THREE.MeshLambertMaterial({ color: 0xfff380 });
+			
+		}
+		setup(){
+			switch (this.type){
+				case 1:
+					this.object = new THREE.IcosahedronGeometry()
+					this.mesh = new THREE.Mesh(this.object, this.material);
+					this.mesh.position.set(0, 0, 0);
+					scene.add(this.mesh)
+					
+			}
+		
+		}
+	
+	}
 	//gui = new gui();
-	player = new Player();
 	scene = new THREE.Scene();
+	target = new Goal();
+	target.setup();
+	player = new Player();
+
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	document.body.appendChild(renderer.domElement);
