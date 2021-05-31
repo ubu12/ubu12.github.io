@@ -68,7 +68,7 @@ function init() {
 			this.posY = +velcoty
 		}
 	}
-	class goal {
+	class Goal {
 		constructor(position, type, object, material) {
 			this.position = position;
 			this.type = type;
