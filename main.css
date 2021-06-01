@@ -5,11 +5,10 @@ body {
 #gui {
     color: pink
     position: absolute;
-     background-color: rgba(0, 0, 0, 0.7);
+     background-color: rgba(0, 0, 0, 0.4);
       color: white;
-     color: white;
-
-    opacity
-    left: 10px;
-    top: 10px;
+      padding: 1em;
+      font-family: monospace;
+        left: 10px;
+        top: 10px;
 }
