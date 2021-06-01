@@ -68,8 +68,7 @@ function init() {
 		}
 	}
 	class Goal {
-		constructor(position, type, object, material) {
-			this.position = position;
+		constructor(type) {
 			this.type = type;
 			this.object;
 			this.mesh;
@@ -93,7 +92,7 @@ function init() {
 	//gui = new gui();
 	scene = new THREE.Scene();
 	target = new Goal();
-	target.setup();
+	target.setup(1);
 	player = new Player();
 
 	renderer = new THREE.WebGLRenderer();
