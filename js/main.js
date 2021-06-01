@@ -126,7 +126,6 @@ function init() {
 	document.addEventListener("keydown", function(KeyboardEvent) {
 		if (KeyboardEvent.key == "w") {
 			moveForward = true;
-			console.log(moveForward)
 		} else if (KeyboardEvent.key == "a") {
 			moveLeft = true;
 		} else if (KeyboardEvent.key == "d") {
