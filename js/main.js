@@ -38,7 +38,7 @@ function setupLevel(levelNumber) {
 		});
 		}
 	
-}
+
 function init() {
 
 	
