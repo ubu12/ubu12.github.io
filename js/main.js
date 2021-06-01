@@ -134,7 +134,7 @@ function init() {
 	setupLevel(1)
     //animation
 	const animate = function() {
-
+		document.getElementById("speed").textContent = "speed: " + velocity;	
 		requestAnimationFrame(animate);
 		player.update()
 	};
@@ -143,7 +143,6 @@ function init() {
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//hook camera with control module
 	// add GUI
-	document.getElementById("speed").textContenct = "speed: " + velocity;	
 	// listen for keypresses
 	document.addEventListener("keydown", function(KeyboardEvent) {
 		if (KeyboardEvent.key == "w") {
