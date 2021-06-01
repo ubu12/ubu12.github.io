@@ -13,6 +13,7 @@ let gravity = 0.382;
 let gravityVelocity = 0.098
 var moveForward = false;
 var enemies = [];
+
 function setupLevel(levelNumber) {
 		let levelLoaded;
 		switch (levelNumber) {
@@ -132,8 +133,8 @@ function init() {
 	scene.add(light);
 	setupLevel(1)
     //animation
-	const animate = function(vector) {
-		
+	const animate = function() {
+
 		requestAnimationFrame(animate);
 		player.update()
 	};
@@ -141,7 +142,8 @@ function init() {
 	///////////////////////////////////////////////////////////////////// movement/interaction code ///////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//hook camera with control module
-	// add event listener to show/hide a UI (e.g. the game's menu)
+	// add GUI
+	document.getElementById("speed").textContenct = "speed: " + velocity;	
 	// listen for keypresses
 	document.addEventListener("keydown", function(KeyboardEvent) {
 		if (KeyboardEvent.key == "w") {
