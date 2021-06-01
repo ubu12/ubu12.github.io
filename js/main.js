@@ -134,7 +134,7 @@ function init() {
 	setupLevel(1)
     //animation
 	const animate = function() {
-		document.getElementById("speed").textContent = "speed: " + velocity;	
+		document.getElementById("speed").textContent =  " "+ velocity;	
 		requestAnimationFrame(animate);
 		player.update()
 	};
