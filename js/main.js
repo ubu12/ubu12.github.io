@@ -47,7 +47,6 @@ function init() {
 			this.camera.position.addScaledVector(this.direction, velocity);
 			//this.camera.position = this.gravityVector;
 			this.camera.position.setY((this.camera.position.y - gravity));
-			console.log(this.camera.position.z - gravity)
 			if (moveForward == true) {
 				velocity = velocity + 0.025
 			}
