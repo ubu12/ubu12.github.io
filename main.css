@@ -2,3 +2,9 @@ body {
     margin: 0;
     position: relative;
 }
+#gui {
+    position: absolute;
+    background-color: transparent;
+    left: 10px;
+    top: 10px;
+}
