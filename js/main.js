@@ -124,20 +124,12 @@ function init() {
 	document.addEventListener("keydown", function(KeyboardEvent) {
 		if (KeyboardEvent.key == "w") {
 			moveForward = true;
-		} else if (KeyboardEvent.key == "a") {
-			moveLeft = true;
-		} else if (KeyboardEvent.key == "d") {
-			moveRight = true;
 		}
 	})
 	document.addEventListener("keyup", function(KeyboardEvent) {
 		if (KeyboardEvent.key == "w") {
 			moveForward = false;
-		} else if (KeyboardEvent.key == "a") {
-			moveLeft = false;
-		} else if (KeyboardEvent.key == "d") {
-			moveRight = false;
-		}
+		} 
 	})
 	//animate 3d objects
 	animate();
