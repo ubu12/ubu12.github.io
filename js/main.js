@@ -37,7 +37,7 @@ function setupLevel(levelNumber) {
 			console.error(error);
 		});
 		}
-	}
+	
 }
 function init() {
 
