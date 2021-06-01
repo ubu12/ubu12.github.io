@@ -68,15 +68,16 @@ function init() {
 		}
 	}
 	class Goal {
-		constructor(type) {
-			this.type = type;
+		constructor() {
+			this.type;
 			this.object;
 			this.mesh;
 			this.material = new THREE.MeshLambertMaterial({ color: 0xfff380 });
 			
 		}
-		setup(){
-			console.log(this.type)
+		setup(type){
+			console.log(type)
+			this.type = type;
 			switch (this.type){
 				case 1:
 					console.log("Goal created.")
@@ -103,6 +104,10 @@ function init() {
 	light = new THREE.AmbientLight(0x404040); // soft white light
 	scene.add(light);
 	loader = new GLTFLoader(); //initialise our model loader
+	//"The Lighthouse" (https://skfb.ly/6rU7V) by cotman sam is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+	//"Medieval Fantasy Book" (https://skfb.ly/69Qty) by Pixel is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+	//"Sea Keep "Lonely Watcher"" (https://skfb.ly/6zvyr) by Artjoms Horosilovs is licensed under CC Attribution-NonCommercial-ShareAlike (http://creativecommons.org/licenses/by-nc-sa/4.0/).
+	//"stylised sky player home dioroma" (https://skfb.ly/P6nF) by Sander Vander Meiren is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
         // "Ship in Clouds" (https://skfb.ly/67IY9) by Bastien Genbrugge is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 	loader.load('assets/ship_in_clouds/scene.gltf', function(gltf) { //load the level within gtlf and then add it to the main scene
 		model = gltf.scene // assign a variable to store the currently rendered level
