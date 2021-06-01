@@ -76,6 +76,7 @@ function init() {
 			
 		}
 		setup(){
+			console.log(this.type)
 			switch (this.type){
 				case 1:
 					console.log("Goal created.")
