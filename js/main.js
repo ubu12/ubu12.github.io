@@ -70,7 +70,6 @@ function init() {
 
 			this.controls.addEventListener('lock', function () {
 			paused == false;
-			console.log(paused)
 
 			//	instructions.style.display = 'none';
 			//	blocker.style.display = 'none';
@@ -79,7 +78,6 @@ function init() {
 
 			this.controls.addEventListener('unlock', function () {
 				paused == true;
-				console.log(paused)
 			//	blocker.style.display = 'block';
 			//	instructions.style.display = '';
 			});
