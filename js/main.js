@@ -148,7 +148,7 @@ function init() {
 
 		requestAnimationFrame(animate);
 		//player.update()
-		for (var i = 0;i < playerlist.length, i++){
+		for (var i = 0;i < playerlist.length; i++){
 			playerlist[i].update()
 		}
 	};
