@@ -85,7 +85,7 @@ function init() {
 			this.camera.position.addScaledVector(this.direction, velocity);
 			//this.camera.position = this.gravityVector;
 			this.camera.position.setY((this.camera.position.y - gravity));
-			if (moveForward == true &&) {
+			if (moveForward == true) {
 				velocity = velocity + 0.025
 			}
 			if (this.gravityVelocity > 0.98) {
