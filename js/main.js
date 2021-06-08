@@ -60,11 +60,11 @@ function init() {
 			this.controls = new PointerLockControls(this.camera, document.body);
 		}
 		update() {
-			var cPlayer = this;
+			var cPlayer = this.controls;
 			document.addEventListener('click', function(cPlayer) {
 				// warning : in current chrome build ther pointer lock api retrurns errors on call. https://bugs.chromium.org/p/chromium/issues/detail?id=1127920
 				console.log(cPlayer.controls)
-				cPlayer.controls.lock()
+				cPlayer.lock()
 			
 			}, false);
 
