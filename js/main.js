@@ -9,7 +9,7 @@ import {
 //initialise variables 
 let scene, renderer, loader, model, light, player, target, levelNumber;
 let playerlist = [];
-let paused = true;
+let paused;
 let velocity = 1;
 let gravity = 0.382;
 let gravityVelocity = 0.098
@@ -32,6 +32,7 @@ function setupLevel(levelNumber) {
 			break;
 				
 		}
+	paused = true;
 		loader = new GLTFLoader(); //initialise our model loader
 		//"The Lighthouse" (https://skfb.ly/6rU7V) by cotman sam is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 		//"Medieval Fantasy Book" (https://skfb.ly/69Qty) by Pixel is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
@@ -69,6 +70,7 @@ function init() {
 
 			playerlist[i].controls.addEventListener('lock', function () {
 			paused == false;
+			console.log("unlocked")
 
 			//	instructions.style.display = 'none';
 			//	blocker.style.display = 'none';
@@ -77,6 +79,8 @@ function init() {
 
 			playerlist[i].controls.addEventListener('unlock', function () {
 				paused == true;
+				console.log("locked")
+
 			//	blocker.style.display = 'block';
 			//	instructions.style.display = '';
 			});
