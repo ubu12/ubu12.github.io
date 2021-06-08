@@ -61,10 +61,10 @@ function init() {
 		update() {
 			document.addEventListener('click', function() {
 				// warning : in current chrome build ther pointer lock api retrurns errors on call. https://bugs.chromium.org/p/chromium/issues/detail?id=1127920
-				for (var i = 0; i < playerlist.length; i++;) {
+				for (var i = 0; i < playerlist.length; i++) {
 					playerlist[i].controls.lock();}
 			}, false);
-		for (var i = 0; i < playerlist.length; i++;) {
+		for (var i = 0; i < playerlist.length; i++) {
 
 			playerlist[i].controls.addEventListener('lock', function () {
 			paused == false;
@@ -148,7 +148,7 @@ function init() {
 
 		requestAnimationFrame(animate);
 		//player.update()
-		for (var i = 0;i < playerlist.length, i++;){
+		for (var i = 0;i < playerlist.length, i++){
 			playerlist[i].update()
 		}
 	};
