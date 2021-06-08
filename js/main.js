@@ -66,25 +66,23 @@ function init() {
 				for (var i = 0; i < playerlist.length; i++) {
 					playerlist[i].controls.lock();}
 			}, false);
-		for (var i = 0; i < playerlist.length; i++) {
 
-			playerlist[i].controls.addEventListener('lock', function () {
+			this.controls.addEventListener('lock', function () {
 			paused == false;
-			console.log("unpaused")
+			console.log(paused)
 
 			//	instructions.style.display = 'none';
 			//	blocker.style.display = 'none';
 
 			});
 
-			playerlist[i].controls.addEventListener('unlock', function () {
+			this.controls.addEventListener('unlock', function () {
 				paused == true;
-				console.log("paused")
-
+				console.log(paused)
 			//	blocker.style.display = 'block';
 			//	instructions.style.display = '';
 			});
-		}
+		
 		if (paused == false){
 			velocity = (velocity / 1.01);
 			this.camera.getWorldDirection(this.direction);
