@@ -70,7 +70,7 @@ function init() {
 
 			playerlist[i].controls.addEventListener('lock', function () {
 			paused == false;
-			console.log("unlocked")
+			console.log("unpaused")
 
 			//	instructions.style.display = 'none';
 			//	blocker.style.display = 'none';
@@ -79,7 +79,7 @@ function init() {
 
 			playerlist[i].controls.addEventListener('unlock', function () {
 				paused == true;
-				console.log("locked")
+				console.log("paused")
 
 			//	blocker.style.display = 'block';
 			//	instructions.style.display = '';
