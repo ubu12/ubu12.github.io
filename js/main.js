@@ -144,7 +144,7 @@ function init() {
 		document.getElementById("menu").textContent =  paused;	
 
 		requestAnimationFrame(animate);
-		player.update()
+		//player.update()
 		for (i = 0;i < playerlist.length, i++;){
 			playerlist[i].update()
 		}
