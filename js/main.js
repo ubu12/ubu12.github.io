@@ -9,7 +9,7 @@ import {
 //initialise variables 
 let scene, renderer, loader, model, light, player, target, levelNumber;
 let playerlist = [];
-let paused = false;
+let paused = true;
 let velocity = 1;
 let gravity = 0.382;
 let gravityVelocity = 0.098
