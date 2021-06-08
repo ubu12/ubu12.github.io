@@ -63,7 +63,8 @@ function init() {
 		
 			document.addEventListener('click', function() {
 				// warning : in current chrome build ther pointer lock api retrurns errors on call. https://bugs.chromium.org/p/chromium/issues/detail?id=1127920
-					this.controls.lock();}
+					this.controls.lock()
+			
 			}, false);
 
 			this.controls.addEventListener('lock', function () {
