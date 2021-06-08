@@ -8,6 +8,8 @@ import {
 } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 //initialise variables 
 let scene, renderer, loader, model, light, player, target, levelNumber;
+let playerlist = [];
+let paused = false;
 let velocity = 1;
 let gravity = 0.382;
 let gravityVelocity = 0.098
@@ -21,6 +23,12 @@ function setupLevel(levelNumber) {
 				levelLoaded = "assets/ship_in_clouds/scene.gltf" 
 			break;
 			case 2: levelLoaded = "assets/the_lighthouse/scene.gltf"
+			break;
+			case 3: levelLoaded = "assets/medieval_fantasy_book/scene.gtlf"
+			break;
+			case 4: levelLoaded = "assets/stylised_sky_player_home_diorama/scene.gtlf"
+			break;
+			case 5: levelLoaded = "assets/sea_keep_lonely_watcher/scene.gtlf"
 			break;
 				
 		}
@@ -57,14 +65,14 @@ function init() {
 			}, false);
 
 			player.controls.addEventListener('lock', function () {
-
+			paused == false;
 			//	instructions.style.display = 'none';
 			//	blocker.style.display = 'none';
 
 			});
 
 			player.controls.addEventListener('unlock', function () {
-
+			paused == true;
 			//	blocker.style.display = 'block';
 			//	instructions.style.display = '';
 			});
@@ -73,8 +81,8 @@ function init() {
 			this.camera.getWorldDirection(this.direction);
 			this.camera.position.addScaledVector(this.direction, velocity);
 			//this.camera.position = this.gravityVector;
-			this.camera.position.setY((this.camera.position.y - gravity));
-			if (moveForward == true) {
+			if (paused == false){this.camera.position.setY((this.camera.position.y - gravity));}
+			if (moveForward == true && (paused == false)) {
 				velocity = velocity + 0.025
 			}
 			if (this.gravityVelocity > 0.98) {
@@ -119,12 +127,10 @@ function init() {
 	
 	}
 		
-	//gui = new gui();
 	scene = new THREE.Scene();
 	target = new Goal();
 	target.setup(1);
-	player = new Player();
-	
+	playerlist.push (new Player());
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	document.body.appendChild(renderer.domElement);
@@ -135,8 +141,13 @@ function init() {
     //animation
 	const animate = function() {
 		document.getElementById("speed").textContent =  " "+ velocity;	
+		document.getElementById("menu").textContent =  paused;	
+
 		requestAnimationFrame(animate);
 		player.update()
+		for (i = 0;i < playerlist.length, i++;){
+			playerlist[i].update()
+		}
 	};
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////// movement/interaction code ///////////////////////////////////////////////////////////////////////////////////
