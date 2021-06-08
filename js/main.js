@@ -32,7 +32,7 @@ function setupLevel(levelNumber) {
 			break;
 				
 		}
-	paused = true;
+		paused = true;
 		loader = new GLTFLoader(); //initialise our model loader
 		//"The Lighthouse" (https://skfb.ly/6rU7V) by cotman sam is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 		//"Medieval Fantasy Book" (https://skfb.ly/69Qty) by Pixel is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
@@ -63,8 +63,7 @@ function init() {
 		
 			document.addEventListener('click', function() {
 				// warning : in current chrome build ther pointer lock api retrurns errors on call. https://bugs.chromium.org/p/chromium/issues/detail?id=1127920
-				for (var i = 0; i < playerlist.length; i++) {
-					playerlist[i].controls.lock();}
+					this.controls.lock();}
 			}, false);
 
 			this.controls.addEventListener('lock', function () {
