@@ -59,6 +59,7 @@ function init() {
 			this.controls = new PointerLockControls(this.camera, document.body);
 		}
 		update() {
+		
 			document.addEventListener('click', function() {
 				// warning : in current chrome build ther pointer lock api retrurns errors on call. https://bugs.chromium.org/p/chromium/issues/detail?id=1127920
 				for (var i = 0; i < playerlist.length; i++) {
@@ -80,7 +81,7 @@ function init() {
 			//	instructions.style.display = '';
 			});
 		}
-
+		if (paused == false){
 			velocity = (velocity / 1.01);
 			this.camera.getWorldDirection(this.direction);
 			this.camera.position.addScaledVector(this.direction, velocity);
@@ -88,9 +89,10 @@ function init() {
 			this.camera.position.setY((this.camera.position.y - gravity));
 			if (moveForward == true) {
 				velocity = velocity + 0.025
-			}
+			};
 			if (this.gravityVelocity > 0.98) {
 			}
+		}
 			renderer.render(scene, this.camera);
 		}
 	}
