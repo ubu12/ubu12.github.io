@@ -61,11 +61,14 @@ function init() {
 		update() {
 			document.addEventListener('click', function() {
 				// warning : in current chrome build ther pointer lock api retrurns errors on call. https://bugs.chromium.org/p/chromium/issues/detail?id=1127920
-				player.controls.lock();
+				for (var i = 0; i < playerlist.length; i++;) {
+					playerlist[i].controls.lock();}
 			}, false);
+		for (var i = 0; i < playerlist.length; i++;) {
 
-			player.controls.addEventListener('lock', function () {
+			playerlist[i].controls.addEventListener('lock', function () {
 			paused == false;
+
 			//	instructions.style.display = 'none';
 			//	blocker.style.display = 'none';
 
@@ -75,13 +78,14 @@ function init() {
 			//	blocker.style.display = 'block';
 			//	instructions.style.display = '';
 			});
+		}
 
 			velocity = (velocity / 1.01);
 			this.camera.getWorldDirection(this.direction);
 			this.camera.position.addScaledVector(this.direction, velocity);
 			//this.camera.position = this.gravityVector;
-			if (paused == false){this.camera.position.setY((this.camera.position.y - gravity));}
-			if (moveForward == true && (paused == false)) {
+			this.camera.position.setY((this.camera.position.y - gravity));
+			if (moveForward == true &&) {
 				velocity = velocity + 0.025
 			}
 			if (this.gravityVelocity > 0.98) {
