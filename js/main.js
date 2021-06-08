@@ -74,7 +74,7 @@ function init() {
 
 			});
 
-			player.controls.addEventListener('unlock', function () {
+			playerlist[i].controls.addEventListener('unlock', function () {
 			//	blocker.style.display = 'block';
 			//	instructions.style.display = '';
 			});
