@@ -189,7 +189,7 @@ function init() {
                 }
                 const directionVector = globalVertex.sub(playerlist[i].playerModel.position);
                 var ray = new THREE.Raycaster(playerlist[i].playerModel.position, directionVector.normalize());
-                var collisionResults = ray.intersectObjects(target.mesh);
+                var collisionResults = ray.intersectObjects(target);
                 if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {
                     console.log("collision obect 1");
 
