@@ -9,6 +9,7 @@ import {
 //initialise variables 
 let scene, renderer, model, light, playerModel, target, levelNumber;
 let playerlist = [];
+let meshList = [];
 let paused;
 let velocity = 1;
 let gravity = 0.382;
@@ -17,7 +18,16 @@ var moveForward = false;
 var enemies = [];
 let loader = new GLTFLoader(); //initialise our model loader
 
+function checkMeshes() {
+scene.traverse( function( object ) {
 
+    if ( object.isMesh ) {
+    meshList.push(object)
+    }
+
+} );
+
+}
 function setupLevel(levelNumber) {
 		let levelLoaded;
 		switch (levelNumber) {
@@ -128,7 +138,7 @@ function init() {
 					console.log("Goal created.")
 					this.object = new THREE.IcosahedronGeometry()
 					this.mesh = new THREE.Mesh(this.object, this.material);
-					this.mesh.scale.set(20,20,20)
+					this.mesh.scale.set(10,10,10)
 					this.mesh.position.set(0, 0, 0);
 					scene.add(this.mesh)
 					
@@ -169,22 +179,23 @@ function init() {
 		document.getElementById("menu").textContent =  paused;	
 		requestAnimationFrame(animate);
 		//player.update()
+		checkMeshes();
 		for (var i = 0;i < playerlist.length; i++){
-
 			playerlist[i].update()
 			var originPoint = playerlist[i].playerModel.geometry.getAttribute( 'position' );
 			var localVertex = new THREE.Vector3();
 			var globalVertex = new THREE.Vector3();
 			for (let vertexIndex = 0; vertexIndex < originPoint.count; vertexIndex++)
 			{       
+				console.log("this executes")
 				localVertex.fromBufferAttribute( originPoint, vertexIndex );
 				globalVertex.copy( localVertex ).applyMatrix4( playerlist[i].playerModel.matrixWorld );  
 			} 
 			const directionVector = globalVertex.sub( playerlist[i].playerModel.position );
 			var ray = new THREE.Raycaster( playerlist[i].playerModel.position, directionVector.normalize() );
-			var collisionResults = ray.intersectObjects( target );
+			var collisionResults = ray.intersectObjects( meshList );
 			if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() ){
-				console.log("collision obect 1");       
+				console.log("collision logs");       
 
 
 					}
