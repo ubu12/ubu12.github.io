@@ -187,7 +187,6 @@ function init() {
 			var globalVertex = new THREE.Vector3();
 			for (let vertexIndex = 0; vertexIndex < originPoint.count; vertexIndex++)
 			{       
-				console.log("this executes")
 				localVertex.fromBufferAttribute( originPoint, vertexIndex );
 				globalVertex.copy( localVertex ).applyMatrix4( playerlist[i].playerModel.matrixWorld );  
 			} 
