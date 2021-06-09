@@ -56,6 +56,8 @@ function setupLevel(levelNumber) {
 		}, undefined, function(error) {	// error logging
 			console.error(error);
 		});
+			checkMeshes();
+
 		
 		}
 	
@@ -179,7 +181,6 @@ function init() {
 		document.getElementById("menu").textContent =  paused;	
 		requestAnimationFrame(animate);
 		//player.update()
-		checkMeshes();
 		for (var i = 0;i < playerlist.length; i++){
 			playerlist[i].update()
 			var originPoint = playerlist[i].playerModel.geometry.getAttribute( 'position' );
