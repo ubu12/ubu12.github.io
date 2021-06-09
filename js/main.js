@@ -191,6 +191,7 @@ function init() {
 				localVertex.fromBufferAttribute( originPoint, vertexIndex );
 				globalVertex.copy( localVertex ).applyMatrix4( playerlist[i].playerModel.matrixWorld );  
 			} 
+			console.log(meshList)
 			const directionVector = globalVertex.sub( playerlist[i].playerModel.position );
 			var ray = new THREE.Raycaster( playerlist[i].playerModel.position, directionVector.normalize() );
 			var collisionResults = ray.intersectObjects( meshList );
