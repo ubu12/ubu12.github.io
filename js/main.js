@@ -69,11 +69,13 @@ function init() {
 		constructor(direction, vector, camera, controls) {
 			this.direction = new THREE.Vector3();
 			this.vector = new THREE.Vector3();
+			this.playerModel = new THREE.Mesh(this.geometry, this.material)
 			this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
+			this.playerModel.add(this.camera)
 			this.controls = new PointerLockControls(this.camera, document.body);
 			this.geometry = new THREE.BoxGeometry( 1, 1, 1 );
 			this.material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
-			this.playerModel = new THREE.Mesh(this.geometry, this.material)
+			this.playerModel.scale.set(10,10,10)
 			
 		}
 		setup(){
