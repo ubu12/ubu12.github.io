@@ -185,6 +185,7 @@ function init() {
 		//player.update()
 		for (var i = 0;i < playerlist.length; i++){
 			playerlist[i].update()
+			console.log(layerlist[i].playerModel)
 			var originPoint = playerlist[i].playerModel.geometry.getAttribute( 'position' );
 			var localVertex = new THREE.Vector3();
 			var globalVertex = new THREE.Vector3();
