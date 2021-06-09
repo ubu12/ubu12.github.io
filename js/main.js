@@ -46,10 +46,7 @@ function setupLevel(levelNumber) {
 		}, undefined, function(error) {	// error logging
 			console.error(error);
 		});
-		loader.load("assets/playermodel/playerModel.gltf", function(gltf){
-			playerModel = gtlf.scene;
-			scene.add (playerModel)
-		})
+		
 		}
 	
 
@@ -62,6 +59,13 @@ function init() {
 			this.vector = new THREE.Vector3();
 			this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
 			this.controls = new PointerLockControls(this.camera, document.body);
+			this.geometry = new THREE.BoxGeometry( 1, 1, 1 );
+			this.material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+			this.playerModel = new THREE.Mesh(this.geometry, this.material)
+			
+		}
+		setup(){
+			scene.add(this.playerModel)
 		}
 		update() {
 			this.controls.addEventListener('lock', function () {
@@ -86,6 +90,7 @@ function init() {
 			this.camera.position.addScaledVector(this.direction, velocity);
 			//this.camera.position = this.gravityVector;
 			this.camera.position.setY((this.camera.position.y - gravity));
+			
 			if (moveForward == true) {
 				velocity = velocity + 0.025
 			};
@@ -123,6 +128,7 @@ function init() {
 					console.log("Goal created.")
 					this.object = new THREE.IcosahedronGeometry()
 					this.mesh = new THREE.Mesh(this.object, this.material);
+					this.mesh.scale.set(20,20,20)
 					this.mesh.position.set(0, 0, 0);
 					scene.add(this.mesh)
 					
@@ -142,13 +148,14 @@ function init() {
 		
 	
 	}, false);
-
-
-
+	playerlist.push (new Player());
+	for (var i = 0; i < playerlist.length; i++)
+		{
+			playerlist[i].setup
+		}
 	scene = new THREE.Scene();
 	target = new Goal();
 	target.setup(1);
-	playerlist.push (new Player());
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	document.body.appendChild(renderer.domElement);
@@ -160,13 +167,33 @@ function init() {
 	const animate = function() {
 		document.getElementById("speed").textContent =  " "+ velocity;	
 		document.getElementById("menu").textContent =  paused;	
-
 		requestAnimationFrame(animate);
 		//player.update()
 		for (var i = 0;i < playerlist.length; i++){
+
 			playerlist[i].update()
-		}
-	};
+			var originPoint = playerlist[i].playerModel.geometry.getAttribute( 'position' );
+			var localVertex = new THREE.Vector3();
+			var globalVertex = new THREE.Vector3();
+			for (let vertexIndex = 0; vertexIndex < originPoint.count; vertexIndex++)
+			{       
+				localVertex.fromBufferAttribute( originPoint, vertexIndex );
+				globalVertex.copy( localVertex ).applyMatrix4( playerlist[i].playerModel.matrixWorld );  
+			} 
+			const directionVector = globalVertex.sub( playerlist[i].playerModel.position );
+			var ray = new THREE.Raycaster( playerlist[i].playerModel.position, directionVector.normalize() );
+			var collisionResults = ray.intersectObjects( target.mesh );
+			if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() ){
+				console.log("collision obect 1");       
+
+
+					}
+				}
+				
+			
+			
+				};
+				
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////// movement/interaction code ///////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,3 +215,4 @@ function init() {
 }
 //start main loop function
 init();
+
