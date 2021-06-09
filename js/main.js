@@ -7,7 +7,7 @@ import {
 	GLTFLoader
 } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 //initialise variables 
-let scene, renderer, loader, model, light, player, target, levelNumber;
+let scene, renderer, model, light, playerModel, target, levelNumber;
 let playerlist = [];
 let paused;
 let velocity = 1;
@@ -15,6 +15,8 @@ let gravity = 0.382;
 let gravityVelocity = 0.098
 var moveForward = false;
 var enemies = [];
+let loader = new GLTFLoader(); //initialise our model loader
+
 
 function setupLevel(levelNumber) {
 		let levelLoaded;
@@ -32,8 +34,6 @@ function setupLevel(levelNumber) {
 			break;
 				
 		}
-		paused = true;
-		loader = new GLTFLoader(); //initialise our model loader
 		//"The Lighthouse" (https://skfb.ly/6rU7V) by cotman sam is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 		//"Medieval Fantasy Book" (https://skfb.ly/69Qty) by Pixel is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 		//"Sea Keep "Lonely Watcher"" (https://skfb.ly/6zvyr) by Artjoms Horosilovs is licensed under CC Attribution-NonCommercial-ShareAlike (http://creativecommons.org/licenses/by-nc-sa/4.0/).
@@ -46,6 +46,10 @@ function setupLevel(levelNumber) {
 		}, undefined, function(error) {	// error logging
 			console.error(error);
 		});
+		loader.load("assets/playermodel/playerModel.gltf", function(gltf){
+			playerModel = gtlf.scene;
+			scene.add (playerModel)
+		})
 		}
 	
 
@@ -60,28 +64,22 @@ function init() {
 			this.controls = new PointerLockControls(this.camera, document.body);
 		}
 		update() {
-			var cPlayer = this.controls;
-			document.addEventListener('click', function(cPlayer) {
-				// warning : in current chrome build ther pointer lock api retrurns errors on call. https://bugs.chromium.org/p/chromium/issues/detail?id=1127920
-				console.log(cPlayer.controls)
-				cPlayer.lock()
-			
-			}, false);
-
 			this.controls.addEventListener('lock', function () {
-			paused == false;
+				paused = false;
 
-			//	instructions.style.display = 'none';
-			//	blocker.style.display = 'none';
+			
+				//	instructions.style.display = 'none';
+				//	blocker.style.display = 'none';
+			
+				});
+			
+				this.controls.addEventListener('unlock', function () {
 
-			});
-
-			this.controls.addEventListener('unlock', function () {
-				paused == true;
-			//	blocker.style.display = 'block';
-			//	instructions.style.display = '';
-			});
-		
+					paused = true;
+				//	blocker.style.display = 'block';
+				//	instructions.style.display = '';
+				});
+			
 		if (paused == false){
 			velocity = (velocity / 1.01);
 			this.camera.getWorldDirection(this.direction);
@@ -133,7 +131,20 @@ function init() {
 		}
 	
 	}
+	
+	document.addEventListener('click', function () {
+		// warning : in current chrome build ther pointer lock api retrurns errors on call. https://bugs.chromium.org/p/chromium/issues/detail?id=1127920
+		for (var i = 0; playerlist.length; i++){
+			console.log(playerlist[i])
+
+			playerlist[i].controls.lock();
+		}
 		
+	
+	}, false);
+
+
+
 	scene = new THREE.Scene();
 	target = new Goal();
 	target.setup(1);
