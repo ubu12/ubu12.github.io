@@ -207,7 +207,7 @@ function init() {
         //player.update()
         for (var i = 0; i < playerlist.length; i++) {
             playerlist[i].update()
-            for (var x = 0; i < meshList[].lenth; x++) {
+            for (var x = 0; i < meshList.lenth; x++) {
                 detectCollisionCubes(playerlist[i], meshlist[x])
             }
         }
