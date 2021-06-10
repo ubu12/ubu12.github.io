@@ -17,6 +17,20 @@ let gravityVelocity = 0.098
 var moveForward = false;
 var enemies = [];
 let loader = new GLTFLoader(); //initialise our model loader
+function detectCollisionCubes(object1, object2){
+  object1.geometry.computeBoundingBox(); //not needed if its already calculated
+  object2.geometry.computeBoundingBox();
+  object1.updateMatrixWorld();
+  object2.updateMatrixWorld();
+  
+  var box1 = object1.geometry.boundingBox.clone();
+  box1.applyMatrix4(object1.matrixWorld);
+
+  var box2 = object2.geometry.boundingBox.clone();
+  box2.applyMatrix4(object2.matrixWorld);
+
+  return box1.intersectsBox(box2);
+}
 
 function checkMeshes() {
 scene.traverse( function( object ) {
@@ -79,7 +93,8 @@ function init() {
 			
 		}
 		setup(){
-			scene.add(this.playerModel)
+			this.camera.add(this.playerModel)
+			scene.add(this.camera)
 		}
 		update() {
 			this.controls.addEventListener('lock', function () {
@@ -156,7 +171,7 @@ function init() {
 		// warning : in current chrome build ther pointer lock api retrurns errors on call. https://bugs.chromium.org/p/chromium/issues/detail?id=1127920
 		for (var i = 0; playerlist.length; i++){
 			console.log(playerlist[i])
-
+		
 			playerlist[i].controls.lock();
 		}
 		
@@ -185,24 +200,8 @@ function init() {
 		//player.update()
 		for (var i = 0;i < playerlist.length; i++){
 			playerlist[i].update()
-			console.log(playerlist[i].playerModel)
-			var originPoint = playerlist[i].playerModel.geometry.getAttribute( 'position' );
-			var localVertex = new THREE.Vector3();
-			var globalVertex = new THREE.Vector3();
-			for (let vertexIndex = 0; vertexIndex < originPoint.count; vertexIndex++)
-			{       
-				localVertex.fromBufferAttribute( originPoint, vertexIndex );
-				globalVertex.copy( localVertex ).applyMatrix4( playerlist[i].playerModel.matrixWorld );  
-			} 
-			console.log(meshList)
-			const directionVector = globalVertex.sub( playerlist[i].playerModel.position );
-			var ray = new THREE.Raycaster( playerlist[i].playerModel.position, directionVector.normalize() );
-			var collisionResults = ray.intersectObjects( meshList );
-			if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() ){
-				console.log("collision logs");       
-
-
-					}
+			for (var x = 0; i < meshlist[x]; x++)
+			detectCollisionCubes(playerlist[i], meshlist[x])
 				}
 				
 			
