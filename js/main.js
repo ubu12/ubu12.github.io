@@ -28,7 +28,7 @@ function detectCollisionCubes(object1, object2) {
 
     var box2 = object2.geometry.boundingBox.clone();
     box2.applyMatrix4(object2.matrixWorld);
-    if (box1.intersectsBox(box2){
+    if (box1.intersectsBox(box2)){
         console.log("flagged")
         setupLevel(2)
  } 
