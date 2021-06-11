@@ -18,7 +18,7 @@ var moveForward = false;
 var enemies = [];
 let loader = new GLTFLoader(); //initialise our model loader
 function detectCollisionCubes(object1, object2) {
-    object1.geometry.computeBoundingBox(); //not needed if its already calculated
+    object1.geometry //not needed if its already calculated
     object2.geometry.computeBoundingBox();
     object1.updateMatrixWorld();
     object2.updateMatrixWorld();
