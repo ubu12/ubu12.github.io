@@ -28,8 +28,11 @@ function detectCollisionCubes(object1, object2) {
 
     var box2 = object2.geometry.boundingBox.clone();
     box2.applyMatrix4(object2.matrixWorld);
-
-    return box1.intersectsBox(box2);
+    if (box1.intersectsBox(box2);
+){
+        console.log("flagged")
+        setupLevel(2)
+ } 
 }
 
 function checkMeshes() {
@@ -128,7 +131,7 @@ function init() {
                 this.camera.position.setY((this.camera.position.y - gravity));
 
                 if (moveForward == true) {
-                    velocity = velocity + 0.025
+                    velocity = velocity + 0.0125
                 };
                 if (this.gravityVelocity > 0.98) {}
             }
