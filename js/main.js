@@ -18,7 +18,7 @@ var moveForward = false;
 var enemies = [];
 let loader = new GLTFLoader(); //initialise our model loader
 function detectCollisionCubes(object1, object2) {
-    object1.geometry //not needed if its already calculated
+    object1.geometry.computeBoundingBox(); //not needed if its already calculated
     object2.geometry.computeBoundingBox();
     object1.updateMatrixWorld();
     object2.updateMatrixWorld();
@@ -165,7 +165,7 @@ function init() {
             switch (this.type) {
                 case 1:
                     console.log("Goal created.")
-                    this.object = new THREE.IcosahedronGeometry()
+                    this.object = new THREE.BoxGeometry()
                     this.mesh = new THREE.Mesh(this.object, this.material);
                     this.mesh.scale.set(10, 10, 10)
                     this.mesh.position.set(0, 0, 0);
