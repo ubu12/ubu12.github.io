@@ -19,6 +19,7 @@ var enemies = [];
 let loader = new GLTFLoader(); //initialise our model loader
 function detectCollisionCubes(object1, object2) {
     object1.geometry.computeBoundingBox(); //not needed if its already calculated
+    console.log(    object1.geometry.computeBoundingBox(); //not needed if its already calculated)
     object2.geometry.computeBoundingBox();
     object1.updateMatrixWorld();
     object2.updateMatrixWorld();
@@ -209,9 +210,8 @@ function init() {
         //player.update()
         for (var i = 0; i < playerlist.length; i++) {
             playerlist[i].update()
-            for (var x = 0; i < meshList.lenth; x++) {
-                detectCollisionCubes(playerlist[i], meshlist[x])
-            }
+                detectCollisionCubes(playerlist[i], target)
+            
         }
 
 
