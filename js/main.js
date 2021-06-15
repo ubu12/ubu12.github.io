@@ -58,7 +58,7 @@ function detectCollisionCubes(object1, object2) {
             setupLevel((levelOn + 1));
         }
         else {
-       levelOn = 1; 
+       levelOn = 0; 
        }
             // add one to the amount of times this can be called to prevent double drawing
     }
