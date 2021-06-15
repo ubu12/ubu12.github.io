@@ -112,7 +112,7 @@ function setupLevel(levelNumber) {
             levelLoaded = "assets/stylised_sky_player_home_dioroma/scene.gltf"
             levelOn = 4;
             modelScale.length = 0
-            modelScale.push(10, 10, 10)
+            modelScale.push(7.5, 7.5, 7.5)
                for (var i = 0; i < playerlist.length; i++) {
                 
                 playerlist[i].camera.position.set(0, 0, 0)
@@ -123,7 +123,7 @@ function setupLevel(levelNumber) {
             levelLoaded = "assets/sea_keep_lonely_watcher/scene.gltf"
             levelOn = 5;
             modelScale.length = 0
-            modelScale.push(0.3, 0.3, 0.3)
+            modelScale.push(0.6, 0.6, 0.6)
                for (var i = 0; i < playerlist.length; i++) {
                 
                 playerlist[i].camera.position.set(0, 0, 0)
