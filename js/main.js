@@ -54,12 +54,9 @@ function detectCollisionCubes(object1, object2) {
             console.log("Box1 hit Box2")
         
             //setup a new level
-        if (levelOn < 5){
+
             setupLevel((levelOn + 1));
-        }
-        else {
-       levelOn = 0; 
-       }
+      
             // add one to the amount of times this can be called to prevent double drawing
     }
 }
@@ -79,6 +76,10 @@ function checkMeshes() {
 
 // function for setting up new levels
 function setupLevel(levelNumber) {
+    let nextLevel = (levelOn + 1);
+    if (nextLevel > 5) {
+    levelOn = 0;
+    }
     let modelScale = [];
     // wipe the scene of the current level
     scene.remove(scene.getObjectByName("level"))
