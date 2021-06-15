@@ -102,7 +102,7 @@ function setupLevel(levelNumber) {
             levelOn = 3;
             levelLoaded = "assets/medieval_fantasy_book/scene.gltf"
             modelScale.length = 0
-            modelScale.push(100, 100, 100)
+            modelScale.push(50, 50, 50)
             for (var i = 0; i < playerlist.length; i++) {
                 
                 playerlist[i].camera.position.set(0, 0, 0)
