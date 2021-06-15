@@ -16,7 +16,7 @@ let callCount;
 let playerlist = [];
 let meshList = [];
 let velocity = 1;
-let gravity = 0.382;
+let gravity = 0.362;
 let moveForward = false;
 
 //initialise our model loader so it can be used globally
@@ -47,17 +47,16 @@ function detectCollisionCubes(object1, object2) {
     box2.applyMatrix4(object2.matrixWorld);
 
     // collision detected code
-    if (box1.intersectsBox(box2) && (callCount < 1) ) {
+    if (box1.intersectsBox(box2) ) {
         // limit how many times this can be called to prevent memleaks
        
 
             console.log("Box1 hit Box2")
-
+        
             //setup a new level
             setupLevel((levelOn + 1));
 
             // add one to the amount of times this can be called to prevent double drawing
-            callCount =+ 1;
     }
 }
 
@@ -92,12 +91,21 @@ function setupLevel(levelNumber) {
             levelOn = 2;
             levelLoaded = "assets/the_lighthouse/scene.gltf"
             modelScale.length = 0
-            modelScale.push(0.1, 0.1, 0.1)
+            modelScale.push(1, 1, 1)
+            console.log(1)
+            for (var i = 0; i < playerlist.length; i++) {
+                
+                playerlist[i].camera.position.set(0, 0, 0)
+            }
             break;
         case 3:
             levelOn = 3;
-            levelLoaded = "assets/medieval_fantasy_book/scene.gtlf"
+            levelLoaded = "assets/stylised_sky_player_home_dioroma/scene.gltf"
             modelScale = (0.25, 0.25, 0.25)
+            for (var i = 0; i < playerlist.length; i++) {
+                
+                playerlist[i].camera.position.set(0, 0, 0)
+            }
             break;
         case 4:
             levelLoaded = "assets/stylised_sky_player_home_diorama/scene.gtlf"
@@ -114,7 +122,7 @@ function setupLevel(levelNumber) {
     for (var i = 0; i < playerlist.length; i++) {
         
         // reset player position to 0
-        playerlist[i].playerModel.position.set(0, 0, 0)
+        playerlist[i].playerModel.position.setY(100)
     }
 
 
@@ -153,10 +161,6 @@ function setupLevel(levelNumber) {
 
     // check if any new meshes have been added to the scene, and add them to meshlist (needed for complex collisions)
     checkMeshes();
-
-    // the amount of times this function has been called must be set to 0 in order for it to run again
-    callCount = 0;
-    console.log(callCount)
 
 
 }
@@ -264,7 +268,7 @@ function init() {
 
                 // code for forward movement 
                 if (moveForward == true) {
-                    velocity = velocity + 0.02
+                    velocity = velocity + 0.025
                 };
 
             }
