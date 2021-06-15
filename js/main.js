@@ -101,7 +101,7 @@ function setupLevel(levelNumber) {
         case 3:
             levelOn = 3;
             levelLoaded = "assets/stylised_sky_player_home_dioroma/scene.gltf"
-            modelScale = (0.25, 0.25, 0.25)
+            modelScale.push(0.25, 0.25, 0.25)
             for (var i = 0; i < playerlist.length; i++) {
                 
                 playerlist[i].camera.position.set(0, 0, 0)
