@@ -217,7 +217,7 @@ function init() {
             this.direction = new THREE.Vector3();
 
             // define our camera object
-            this.camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 1, 1000);
+            this.camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 1, 1000000);
 
             // create a new boxgeometry for the playermodel
             this.geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -278,7 +278,7 @@ function init() {
 
                 // code for forward movement 
                 if (moveForward == true) {
-                    velocity = velocity + 0.025
+                    velocity = velocity + 0.05
                 };
 
             }
