@@ -206,7 +206,7 @@ function init() {
             this.direction = new THREE.Vector3();
 
             // define our camera object
-            this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
+            this.camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 1, 1000);
 
             // create a new boxgeometry for the playermodel
             this.geometry = new THREE.BoxGeometry(1, 1, 1);
