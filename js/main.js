@@ -54,8 +54,12 @@ function detectCollisionCubes(object1, object2) {
             console.log("Box1 hit Box2")
         
             //setup a new level
+        if (levelOn < 5){
             setupLevel((levelOn + 1));
-
+        }
+        else {
+       levelOn = 1; 
+       }
             // add one to the amount of times this can be called to prevent double drawing
     }
 }
@@ -93,9 +97,9 @@ function setupLevel(levelNumber) {
             modelScale.length = 0
             modelScale.push(1, 1, 1)
             console.log(1)
-            for (var i = 0; i < playerlist.length; i++) {
+         for (var i = 0; i < playerlist.length; i++) {
                 
-                playerlist[i].camera.position.set(0, 0, 0)
+                playerlist[i].resetPos()
             }
             break;
         case 3:
@@ -105,7 +109,7 @@ function setupLevel(levelNumber) {
             modelScale.push(50, 50, 50)
             for (var i = 0; i < playerlist.length; i++) {
                 
-                playerlist[i].camera.position.set(0, 0, 0)
+                playerlist[i].resetPos()
             }
             break;
         case 4:
@@ -115,7 +119,7 @@ function setupLevel(levelNumber) {
             modelScale.push(7.5, 7.5, 7.5)
                for (var i = 0; i < playerlist.length; i++) {
                 
-                playerlist[i].camera.position.set(0, 0, 0)
+                playerlist[i].resetPos()
             }
             break;
             
@@ -124,12 +128,13 @@ function setupLevel(levelNumber) {
             levelOn = 5;
             modelScale.length = 0
             modelScale.push(0.6, 0.6, 0.6)
-               for (var i = 0; i < playerlist.length; i++) {
+                  for (var i = 0; i < playerlist.length; i++) {
                 
-                playerlist[i].camera.position.set(0, 0, 0)
+                playerlist[i].resetPos()
             }
+         
             break;
-
+        
     }
     console.log(modelScale)
     // loop through all players
@@ -244,7 +249,9 @@ function init() {
             // add the camera to scene
             scene.add(this.camera)
         }
-
+        resetPos(){
+        this.camera.position.set(0,0,0)
+        }
         // update the player, and some other important stuff pertaining to gameplay
         update() {
 
