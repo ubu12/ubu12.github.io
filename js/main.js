@@ -100,14 +100,14 @@ function setupLevel(levelNumber) {
             break;
         case 3:
             levelOn = 3;
-            levelLoaded = "assets/stylised_sky_player_home_dioroma/scene.gltf"
+            levelLoaded = "assets/medieval_fantasy_book/scene.gltf"
             for (var i = 0; i < playerlist.length; i++) {
                 
                 playerlist[i].camera.position.set(0, 0, 0)
             }
             break;
         case 4:
-            levelLoaded = "assets/stylised_sky_player_home_diorama/scene.gtlf"
+            levelLoaded = "assets/stylised_sky_player_home_dioroma/scene.gltf"
             levelOn = 4;
                for (var i = 0; i < playerlist.length; i++) {
                 
@@ -116,7 +116,7 @@ function setupLevel(levelNumber) {
             break;
             
         case 5:
-            levelLoaded = "assets/sea_keep_lonely_watcher/scene.gtlf"
+            levelLoaded = "assets/sea_keep_lonely_watcher/scene.gltf"
             levelOn = 5;
                for (var i = 0; i < playerlist.length; i++) {
                 
