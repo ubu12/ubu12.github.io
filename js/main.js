@@ -85,7 +85,7 @@ function setupLevel(levelNumber) {
             levelLoaded = "assets/ship_in_clouds/scene.gltf"
             levelOn = 1;
             modelScale.length = 0
-            modelScale.push(0.5, 0.5, 0.5)
+            modelScale.push(0.75, 0.75, 0.75)
             break;
         case 2:
             levelOn = 2;
