@@ -61,7 +61,9 @@ function detectCollisionCubes(object1, object2) {
             //setup a new level
                 if (levelOn + 1 > 6) {
                     levelOn = 0;
+                    console.log("reset levelON")
                 }
+        console.log(levelOn)
             setupLevel((levelOn + 1));
       
             // add one to the amount of times this can be called to prevent double drawing
@@ -103,7 +105,7 @@ function setupLevel(levelNumber) {
             console.log(1)
          for (var i = 0; i < playerlist.length; i++) {
                 
-                playerlist[i].camera.position.set(0,100,0)
+                playerlist[i].camera.position.set(0,150,0)
             }
             break;
         case 3:
@@ -123,7 +125,7 @@ function setupLevel(levelNumber) {
             modelScale.push(7.5, 7.5, 7.5)
                for (var i = 0; i < playerlist.length; i++) {
                 
-                playerlist[i].resetPos()
+                playerlist[i].camera.position.set(0,250,0)
             }
             break;
             
@@ -186,7 +188,7 @@ function setupLevel(levelNumber) {
 
 // function run once, on startup
 function init() {
-
+    console.log("Game is loading")
     // Goal class to create a new target for the player to go to
     class Goal {
         constructor() {
@@ -209,7 +211,7 @@ function init() {
 
         //called to setup a new goal
         setup() {
-            this.mesh.position.set(randomInt(-150, 150), randomInt(-150, 150), randomInt(-150, 150))
+            this.mesh.position.set(randomInt(-500, 500), randomInt(-200, 200), randomInt(-500, 500))
             //add a new goal to the mesh
             scene.add(this.mesh)
         }
@@ -256,6 +258,7 @@ function init() {
         }
         // update the player, and some other important stuff pertaining to gameplay
         update() {
+           console.log("Game is playing")
 
             // pause listener function 1
             this.controls.addEventListener('lock', function() {
