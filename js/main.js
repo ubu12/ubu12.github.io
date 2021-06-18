@@ -209,7 +209,7 @@ function init() {
 
         //called to setup a new goal
         setup() {
-            this.mesh.position.set(randomInt(-150, 150)), randomInt(-150, 150)), randomInt(-150, 150)))
+            this.mesh.position.set(randomInt(-150, 150), randomInt(-150, 150), randomInt(-150, 150))
             //add a new goal to the mesh
             scene.add(this.mesh)
         }
