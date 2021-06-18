@@ -59,7 +59,7 @@ function detectCollisionCubes(object1, object2) {
             console.log("Box1 hit Box2")
         
             //setup a new level
-                if (levelOn + 1 > 6) {
+                if (levelOn + 2 > 6) {
                     levelOn = 0;
                     console.log("reset levelON")
                 }
