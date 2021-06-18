@@ -21,6 +21,11 @@ let moveForward = false;
 
 //initialise our model loader so it can be used globally
 let loader = new GLTFLoader(); 
+function randomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 // collsion detection function
 function detectCollisionCubes(object1, object2) {
@@ -201,13 +206,12 @@ function init() {
             this.mesh.scale.set(10, 10, 10)
 
             // move the mesh away from the starting position (temporary)
-            this.mesh.position.set(-25, -25, -25)
     
         }
 
         //called to setup a new goal
         setup() {
-
+            this.mesh.position.set(randomInt(-150, 150)), randomInt(-150, 150)), randomInt(-150, 150)))
             //add a new goal to the mesh
             scene.add(this.mesh)
         }
