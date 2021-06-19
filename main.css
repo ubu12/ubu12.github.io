@@ -9,7 +9,35 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
   color: white;
   font-family: monospace;
-  padding: 1em;
+  padding: 1em;   
+}
 
-    
+#mainScreen{
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: visible;
+}
+.myButton {
+  
+  box-shadow:inset 0px 1px 3px 0px #91b8b3;
+  background-color:white; 
+  border:1px solid #566963;
+  cursor:pointer;
+  color:black;
+  font-family:Arial;
+  font-size:15px;
+  padding:11px 23px;
+  text-decoration:none;
+}
+
+.myButton:active {
+  position:relative;
+  top:1px;
+}
+p{
+  font-family:Arial;
+  font-size:15px;
+  padding:11px 23px;
 }

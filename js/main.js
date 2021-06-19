@@ -11,13 +11,13 @@ import {
 } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 
 //initialise variables 
-let scene, renderer, model, light, target, levelLoaded, levelOn, paused;
+let scene, renderer, model, light, target, levelOn, paused;
 let callCount;
 let playerlist = [];
 let meshList = [];
 let velocity = 1;
-const GRAVITY = 0.362;
-let moveForward = false;
+const GRAVITY = 0.750;
+let moveForward;
 
 //initialise our model loader so it can be used globally
 let loader = new GLTFLoader(); 
@@ -59,15 +59,18 @@ function detectCollisionCubes(object1, object2) {
             console.log("Box1 hit Box2")
         
             //setup a new level
-                if (levelOn + 2 > 6) {
+                if (levelOn + 1 >= 6) {
                     levelOn = 0;
-                    console.log("reset levelON")
+                   
+                    console.log("LevelOn should be 0 here" + levelOn)
+                    setupLevel((levelOn + 1));
                 }
-        console.log(levelOn)
+
+                else {
             setupLevel((levelOn + 1));
-      
             // add one to the amount of times this can be called to prevent double drawing
-    }
+            }
+        }
 }
 
 //function to check all the objects in a scene for meshes
@@ -86,6 +89,7 @@ function checkMeshes() {
 // function for setting up new levels
 function setupLevel(levelNumber) {
     let modelScale = [];
+    let levelLoaded;
     // wipe the scene of the current level
     scene.remove(scene.getObjectByName("level"))
 
@@ -96,16 +100,18 @@ function setupLevel(levelNumber) {
             levelOn = 1;
             modelScale.length = 0
             modelScale.push(0.75, 0.75, 0.75)
+            for (let i =0; i < playerlist.length; i++) {
+                playerlist[i].camera.position.set(0,0,0)
+            }
             break;
         case 2:
             levelOn = 2;
             levelLoaded = "assets/the_lighthouse/scene.gltf"
             modelScale.length = 0
             modelScale.push(1, 1, 1)
-            console.log(1)
          for (var i = 0; i < playerlist.length; i++) {
                 
-                playerlist[i].camera.position.set(0,150,0)
+                playerlist[i].camera.position.set(100,250,0)
             }
             break;
         case 3:
@@ -125,7 +131,7 @@ function setupLevel(levelNumber) {
             modelScale.push(7.5, 7.5, 7.5)
                for (var i = 0; i < playerlist.length; i++) {
                 
-                playerlist[i].camera.position.set(0,250,0)
+                playerlist[i].camera.position.set(0,1000,0)
             }
             break;
             
@@ -133,16 +139,17 @@ function setupLevel(levelNumber) {
             levelLoaded = "assets/sea_keep_lonely_watcher/scene.gltf"
             levelOn = 5;
             modelScale.length = 0
-            modelScale.push(0.6, 0.6, 0.6)
+            modelScale.push(0.8, 0.8, 0.8)
                   for (var i = 0; i < playerlist.length; i++) {
                 
-                playerlist[i].resetPos()
-            }
+                    playerlist[i].camera.position.set(0,500,0)
+                }
          
             break;
         
     }
-    console.log(modelScale)
+    console.log("current level is : " + levelOn)
+
 
 
 
@@ -187,8 +194,8 @@ function setupLevel(levelNumber) {
 
 
 // function run once, on startup
-function init() {
-    console.log("Game is loading")
+function initialise() {
+    document.getElementById("mainScreen").style.display = "none";
     // Goal class to create a new target for the player to go to
     class Goal {
         constructor() {
@@ -211,7 +218,7 @@ function init() {
 
         //called to setup a new goal
         setup() {
-            this.mesh.position.set(randomInt(-500, 500), randomInt(-200, 200), randomInt(-500, 500))
+            this.mesh.position.set(randomInt(-500, 500), randomInt(50, 200), randomInt(-500, 500))
             //add a new goal to the mesh
             scene.add(this.mesh)
         }
@@ -258,7 +265,6 @@ function init() {
         }
         // update the player, and some other important stuff pertaining to gameplay
         update() {
-           console.log("Game is playing")
 
             // pause listener function 1
             this.controls.addEventListener('lock', function() {
@@ -404,4 +410,4 @@ function init() {
     animate();
 }
 //start main loop function
-init();
+window.initialise = initialise;
