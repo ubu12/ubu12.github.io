@@ -36,6 +36,8 @@ LOADINGMANAGER.onStart = function() {
 
 	// the loading screens style is set to flex, which makes it visible
 	LOADINGSCREEN.style.display = "flex";
+    LOADINGSCREEN.style.position = "absolute";
+
 
 }
 // when the loading manager fully loads a level

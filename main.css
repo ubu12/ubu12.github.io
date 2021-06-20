@@ -74,7 +74,7 @@ p{
 }
 .water:after{
   border-radius: 35%;
-  background:rgba(255,255,255,.3);
+  background:rgba(white);
   animation:wave 5s linear infinite;
 }
 @keyframes wave{
