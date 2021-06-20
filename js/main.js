@@ -165,7 +165,7 @@ function setupLevel(levelNumber) {
 			levelLoaded = "assets/medieval_fantasy_book/scene.gltf"
 			modelScale.length = 0
 			modelScale.push(50, 50, 50)
-			for (var i = 0; i < playerlist.length; i++) {
+			for (let i = 0; i < playerlist.length; i++) {
 
 				playerlist[i].resetPos()
 			}
@@ -177,7 +177,7 @@ function setupLevel(levelNumber) {
 			levelOn = 4;
 			modelScale.length = 0
 			modelScale.push(7.5, 7.5, 7.5)
-			for (var i = 0; i < playerlist.length; i++) {
+			for (let i = 0; i < playerlist.length; i++) {
 
 				playerlist[i].camera.position.set(0, 1000, 0)
 			}
@@ -188,7 +188,7 @@ function setupLevel(levelNumber) {
 			levelOn = 5;
 			modelScale.length = 0
 			modelScale.push(0.8, 0.8, 0.8)
-			for (var i = 0; i < playerlist.length; i++) {
+			for (let i = 0; i < playerlist.length; i++) {
 
 				playerlist[i].camera.position.set(0, 500, 0)
 			}
@@ -361,12 +361,12 @@ function initialise() {
 			renderer.render(scene, this.camera);
 
 		}
-	}
+	}   
 	// add event listener for the player clicking
 	document.addEventListener('click', function() {
 
 		// warning : in current chrome build ther pointer lock api retrurns errors on call. https://bugs.chromium.org/p/chromium/issues/detail?id=1127920
-		for (var i = 0; playerlist.length; i++) {
+		for (let i = 0; playerlist.length; i++) {
 
 			//capture the players controls (this will be changed to a local variable if in multiplayer, this is slightly spaghetti)
 			playerlist[i].controls.lock();
