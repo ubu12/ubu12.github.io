@@ -12,7 +12,7 @@ import {
 
 //initialise variables 
 let scene, renderer, model, light, target, levelOn;
-let paused = true;
+let paused;
 let playerlist = [];
 let meshList = [];
 let velocity = 1;
@@ -22,9 +22,10 @@ const loadingScreen = document.getElementById( 'loading-screen' );
 const loadingManager = new THREE.LoadingManager()
     loadingManager.onStart = function(){
         loadingScreen.style.display = "flex";    
+
         }
 		loadingManager.onLoad = function(){
-            loadingScreen.style.display = "none";    
+            loadingScreen.style.display = "none";   
 
         }
 		
@@ -103,7 +104,7 @@ function setupLevel(levelNumber) {
     
     // wipe the scene of the current level
     scene.remove(scene.getObjectByName("level"))
-
+    paused = true;
     // decide which level to load and set levelOn to represent that level
     // also update camera to positions to values in the levels (since each level is different, i need to hardcode spawn positions and ranges for the boxes to spawn in)
     switch (levelNumber) {
@@ -295,6 +296,7 @@ function initialise() {
             // pause listener function 1
             this.controls.addEventListener('lock', function() {
                 paused = false;
+
             });
 
             // pause listener function 2
@@ -305,7 +307,7 @@ function initialise() {
             // set the playermodel position to the camera position 
             this.playerModel.position.set(this.camera.position.getComponent(0), this.camera.position.getComponent(1), this.camera.position.getComponent(2))
 
-            // execution only occurs if pause is false (the players mouse is captured )
+            // execution onl    y occurs if pause is false (the players mouse is captured )
             if (paused == false) {
 
                 // divide velocity by 1.01, to provide a air resistance effect, and enable "gliding"  

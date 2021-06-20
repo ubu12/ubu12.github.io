@@ -45,7 +45,7 @@ p{
 #loading-screen{
   width: 100%;
   height: 100vh;
-  background-color: #555;
+  background-color: white;
   display: none;
   justify-content: center;
   align-items: center;
