@@ -18,7 +18,8 @@ let velocity = 1;
 const GRAVITY = 1;
 let moveForward;
 
-//create a new model loader that can be used globally
+// older versions of the project are stored at https://github.com/ubu12/ubu12.github.io/commits/main/js/main.js 
+// please treat these as multiples version, as thats what they are. Click the <>'s  on the far right of the commit info to view the repo at this point in time;
 
 // assign a new loading screen to a div on the html page
 const LOADINGSCREEN = document.getElementById('loading-screen');
