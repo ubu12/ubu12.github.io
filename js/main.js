@@ -11,16 +11,26 @@ import {
 } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 
 //initialise variables 
-let scene, renderer, model, light, target, levelOn, paused;
-let callCount;
+let scene, renderer, model, light, target, levelOn;
+let paused = true;
 let playerlist = [];
 let meshList = [];
 let velocity = 1;
-const GRAVITY = 0.750;
+const GRAVITY = 1;
 let moveForward;
+const loadingScreen = document.getElementById( 'loading-screen' );
+const loadingManager = new THREE.LoadingManager()
+    loadingManager.onStart = function(){
+        loadingScreen.style.display = "flex";    
+        }
+		loadingManager.onLoad = function(){
+            loadingScreen.style.display = "none";    
+
+        }
+		
 
 //initialise our model loader so it can be used globally
-let loader = new GLTFLoader(); 
+let loader = new GLTFLoader(loadingManager); 
 function randomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -90,29 +100,40 @@ function checkMeshes() {
 function setupLevel(levelNumber) {
     let modelScale = [];
     let levelLoaded;
+    
     // wipe the scene of the current level
     scene.remove(scene.getObjectByName("level"))
 
     // decide which level to load and set levelOn to represent that level
+    // also update camera to positions to values in the levels (since each level is different, i need to hardcode spawn positions and ranges for the boxes to spawn in)
     switch (levelNumber) {
         case 1:
             levelLoaded = "assets/ship_in_clouds/scene.gltf"
             levelOn = 1;
+
+            // clear the array model scale
             modelScale.length = 0
+            // push a new scale to out 3d level, so that it is easier to play in
             modelScale.push(0.75, 0.75, 0.75)
+
+            //update the players coordinates to a value (this value needs to change)
             for (let i =0; i < playerlist.length; i++) {
                 playerlist[i].camera.position.set(0,0,0)
             }
+
             break;
+            
         case 2:
             levelOn = 2;
             levelLoaded = "assets/the_lighthouse/scene.gltf"
             modelScale.length = 0
             modelScale.push(1, 1, 1)
+            target.mesh.position.set(randomInt(-500, 500), randomInt(50, 200), randomInt(-500, 500))
          for (var i = 0; i < playerlist.length; i++) {
                 
                 playerlist[i].camera.position.set(100,250,0)
             }
+            target.mesh.position.set(randomInt(-600, 600), randomInt(50, 200), randomInt(-500, 600))
             break;
         case 3:
             levelOn = 3;
@@ -123,6 +144,8 @@ function setupLevel(levelNumber) {
                 
                 playerlist[i].resetPos()
             }
+            target.mesh.position.set(randomInt(-1000, 1000), randomInt(50, 200), randomInt(-1000, 1000))
+
             break;
         case 4:
             levelLoaded = "assets/stylised_sky_player_home_dioroma/scene.gltf"
@@ -144,6 +167,8 @@ function setupLevel(levelNumber) {
                 
                     playerlist[i].camera.position.set(0,500,0)
                 }
+                target.mesh.position.set(randomInt(-500, 500), randomInt(50, 200), randomInt(-500, 500))
+
          
             break;
         
@@ -195,6 +220,7 @@ function setupLevel(levelNumber) {
 
 // function run once, on startup
 function initialise() {
+    document.getElementById("gui").style.display = "block";
     document.getElementById("mainScreen").style.display = "none";
     // Goal class to create a new target for the player to go to
     class Goal {
