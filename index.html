@@ -1,24 +1,19 @@
-<!DOCTYPE HTML>
-<html lang=en>
-   <head>
-      <title>levCode</title>
-      <script type="module" src="js/main.js"></script>
-      <link href="main.css" rel="stylesheet">
-    </head>
-        <div id="mainScreen">
-          <img src="assets/Volantem.png" alt="main-content">
-          <a href="#" class="myButton" onclick="initialise();">Begin</a>    
-          <p> press w to move forwards, and be careful not to fall into the void!</p>       
-          </div>
-        <div id="gui">
-          <div>Speed: <span id="speed"></span></div>
-          <div>Pause: <span id="menu"></span></div>
-          <div>Objective: Find the yellow cube </div>
-        </div>
-        <div id = "loading-screen">
-          <div class="water"></div>
-        </div>
-   <body>
-      
-   </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strange Cruelty Squad Maze</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/postprocessing/GlitchPass.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
 </html>
